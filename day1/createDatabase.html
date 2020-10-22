@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<script type="text/javascript">
+	function createDatabase(){
+		var obj=openDatabase("html","1.0",2*1024*1024,onSuccessCreate());
+		obj.transaction(
+			function(tx){
+				tx.executeSql('create table emp(id int)');
+			}
+			);
+	}
+	function onSuccessCreate(){
+		alert("database created");
+	}
+	
+</script>
+
+</head>
+<body>
+<input type="button" name="" onclick="createDatabase()" value="createDatabase">
+</body>
+</html>

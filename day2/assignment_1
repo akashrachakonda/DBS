@@ -1,0 +1,45 @@
+1] AGE Calculator
+
+WAP to accept two values from text box -> convert to date format and print the difference between two dates
+
+NOTE:- check validation first value should be less than second value
+
+2] display digital clock on screen
+
+3] Hide and seek game
+
+
+
+
+
+4] WAC Organization with orgName,location,turnOver
+acceptOranizationDetails
+displayOranizationDetails
+
+5] Search operation with marking in Yellow below searching word
+
+6] Create array of Employees with details empId,name,salary,joiningDate,
+   features push,pop,display in table format all records
+   search particular Employee using empId
+   Modify Employee Details with salary increment by 1000 whoes name starts 			with 'A' letter
+   count total records
+   print ascending order of records using names
+   print Employee records whoes salary is above average salary of all the 		Employees
+   print record/records who have joined in the month of Jan
+      
+
+   NOTE:- Using of HTML5 CSS3 OOP Javascript
+   
+All assignments are the combination of HTML5 CSS 3 and JAVASCRIPT
+
+
+
+7] Write a program accept number of rows and cols and create a dynamic table on browser
+
+8] Accept two numbers and a select box item for choice and print the calculation depending upon select box value
+
+9] Accept User Sign up page details and display same details in tabular formar
+
+10] counter watch using start,stop and pause button
+
+

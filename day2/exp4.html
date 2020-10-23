@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.myForm:focus-within {
+ 			 background: #f8f8f8
+    			repeating-linear-gradient(
+    		    45deg,
+      			transparent,
+      			transparent 35px,
+      			rgba(255, 255, 255, 0.5) 35px,
+      			rgba(255, 255, 255, 0.5) 70px
+    		);
+		}
+		.myForm:focus-within::before {
+			content: "I'm a happy selected form!";
+			color: rgb(239, 187, 53);
+		}
+
+	</style>
+</head>
+<body>
+<form tabindex="0" class="myForm">
+	<h3> What's your favorite color </h3>
+	<input type="text">
+</form>
+</body>
+</html>

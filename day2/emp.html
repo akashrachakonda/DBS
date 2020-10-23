@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function Employee(empId,name,salary){
+			this.empId=empId;
+			this.name=name;
+			this.salary=salary;
+
+			this.showEmployeeDetails=function(){
+				alert("Values are"+this.empId+" "+this.name+" "+this.salary)
+			}
+		}
+		var records=[];
+
+		function saveRecord(){
+			var val1=document.getElementById('txt1').value
+			var val2=document.getElementById('txt2').value
+			var val3=document.getElementById('txt3').value
+
+			var emp=new Employee(val1,val2,val3)
+			records.push(emp)
+			alert("Records saved")
+		}
+
+		function displayRecords(){
+			for(i=0;i<records.length;i++){
+				records[i].showEmployeeDetails();
+			}
+		}
+
+
+	</script>
+</head>
+<body>
+
+Enter empId <input type="text" name="" id="txt1"> <br>
+Enter name <input type="text" name="" id="txt2"> <br>
+Enter salary <input type="text" name="" id="txt3"> <br>
+
+<input type="button" name="" onclick="saveRecord()" value="SaveRecord"> <br>
+<input type="button" name="" onclick="displayRecords()" value="DisplayRecords"> <br>
+
+</body>
+</html>
+
+

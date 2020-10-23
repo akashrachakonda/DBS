@@ -1,0 +1,31 @@
+<html>
+   <head>
+      <style type="text/css">
+         a:hover {
+         	color: #FFCC00;
+         	border:5px solid red;
+         }
+         body{
+         	margin: 20px;
+         	padding: 20px;
+         	font-family: 'Segoe UL', Tahoma;
+         }
+         .hiddenText{
+         	display: none;
+         }
+         .hoverDiv:hover +.hiddenText{
+         	display: block;
+         	color:rgb(71,0,65);
+         	font-weight: bold;
+         }
+      </style>
+   </head>
+   <body>
+      <a href="">Bring Mouse Here</a>
+      <h1>Heading 1</h1>
+      <div class="hoverDiv" style="font-size: 18px">Hover division</div>
+      <div class="hiddenText">This is hidden text</div>
+   </body>
+</html> 
+
+

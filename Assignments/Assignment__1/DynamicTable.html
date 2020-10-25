@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+
+	function generate() {
+			 
+	
+var r=parseInt(document.getElementById("r").value);
+var c=parseInt(document.getElementById("c").value);
+
+var table = document.createElement('table');
+
+
+for (var i = 1; i < =r; i++){
+
+	   var tr = document.createElement('tr');
+
+	for (var j =1;j<=c;j++ ) {
+		
+    
+
+    var td1 = document.createElement('td');
+   
+  
+    tr.appendChild(td1);
+ 
+
+    table.appendChild(tr);
+}
+}
+document.body.appendChild(table);
+}
+
+	</script>
+</head>
+<body>
+	Enter No.of rows :<input type="number" name="" id="r">
+	Enter No.of columns:<input type="number" name="" id="c">
+	<input type="button" name="" onclick="generate()" value="GO">
+
+</body>
+</html>

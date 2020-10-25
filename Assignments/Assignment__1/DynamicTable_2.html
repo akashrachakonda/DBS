@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+
+	function generate() {
+			 
+	
+var r=parseInt(document.getElementById("r").value);
+var c=parseInt(document.getElementById("c").value);
+
+
+ var str="";
+
+for (var i = 1; i < =r; i++){
+		str+="<tr>"
+	 
+
+	for (var j =1;j<=c;j++ ) {
+
+		
+    str+="<td>"+"</td>";
+
+}
+str+="</tr>";
+
+}
+document.getElementById("tb").innerHTML=str;
+}
+
+	</script>
+</head>
+<body>
+	Enter No.of rows :<input type="number" name="" id="r">
+	Enter No.of columns:<input type="number" name="" id="c">
+	<input type="button" name="" onclick="generate()" value="GO">
+
+	<table id="tb"></table>
+
+</body>
+</html>

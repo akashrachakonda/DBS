@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html> 
+<head>
+	<meta charset=utf-8 />
+	<title>JavaScript program to calculate multiplication and division of two numbers 
+	</title>
+	<style type="text/css">
+		body {
+			margin: 30px;
+		}
+	</style> 
+	<script type="text/javascript">
+		function add(){
+			x= parseInt(document.getElementById("x").value);
+        	y = parseInt(document.getElementById("y").value);
+        	document.getElementById("res").innerHTML = x + y;
+        }
+
+		function sub() { 
+        	x = document.getElementById("x").value;
+        	y = document.getElementById("y").value;
+			document.getElementById("res").innerHTML = x - y;
+		}
+
+		function mul(){
+			x = document.getElementById("x").value;
+        	y = document.getElementById("y").value;
+        	document.getElementById("res").innerHTML = x * y;
+        }
+
+		function div() { 
+        	x = document.getElementById("x").value;
+        	y = document.getElementById("y").value;
+			document.getElementById("res").innerHTML = x / y;
+		}
+	</script>
+</head>
+<body>
+	<div style="text-align: center;">
+		<input type="text" id="x" /><br><br>
+		<input type="text" id="y" /><br><br>
+
+		<input type="button" onClick="add()" Value="+" />
+		<input type="button" onClick="sub()" Value="-" />
+		<input type="button" onClick="mul()" Value="*" />
+		<input type="button" onClick="div()" Value="/" />
+
+		<p>Result is : <br>
+			<p id = "res"></p>
+		</p>
+	</div>
+	
+</body>
+</html>

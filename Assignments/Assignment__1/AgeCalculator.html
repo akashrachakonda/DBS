@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Age Calculator</title>	
+
+
+			<script type="text/javascript">
+			
+				function age() {
+					var DOB=document.getElementById("d1").value;
+					//console.log(DOB);
+					var d = new Date(DOB);
+					//console.log(d);
+					//console.log(d.getFullYear());
+					var c=new Date();
+					//console.log(c.getFullYear());
+					var age=c.getFullYear()-d.getFullYear();
+					console.log(age);
+
+					document.getElementById("age").innerHTML=age;
+					// body...
+				}
+		</script>
+
+</head>
+<style type="text/css">
+</style>
+<body>
+<div style="text-align:  center;">
+		
+		Enter your DOB :<br><br>
+		 <input type="text" id="d1"  placeholder="yyyy-mm-dd" value=""><br>
+
+		<br>
+		<button type="button" onclick="age()">calculate age</button><br>
+		<br>
+		Age:<p id="age"></p><br>
+	</div>
+
+
+</body>
+</html>

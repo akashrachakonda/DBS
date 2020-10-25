@@ -1,0 +1,53 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function Org(orgName,location,turnOver){
+			this.orgName=orgName;
+			this.location=location;
+			this.turnOver=turnOver;
+
+			this.showOrganizationDetails=function(){
+				return "<br>"+this.orgName+" "+this.location+" "+this.turnOver
+			}
+		}
+		var records=[];
+
+		function saveRecord(){
+			var val1=document.getElementById('txt1').value
+			var val2=document.getElementById('txt2').value
+			var val3=document.getElementById('txt3').value
+
+			var org=new Org(val1,val2,val3)
+			records.push(org)
+			alert("Record saved successfully...")
+		}
+
+		function displayRecords(){
+			var res="";
+			for(i=0;i<records.length;i++){
+				res+=records[i].showOrganizationDetails();
+			}
+			document.getElementById('demo').innerHTML=res;
+		}
+
+
+
+	</script>
+</head>
+<body>
+	<div style="text-align:center;">
+
+Enter orgName <input type="text" name="" id="txt1"> <br><br>
+Enter location <input type="text" name="" id="txt2"> <br><br>
+Enter turnOver <input type="text" name="" id="txt3"> <br><br>
+
+<input type="button" name="" onclick="saveRecord()" value="acceptOranizationDetails"> <br><br>
+<input type="button" name="" onclick="displayRecords()" value="displayOranizationDetails"> <br><br>
+</div>
+<div id="demo"></div>
+</body>
+</html>

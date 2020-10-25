@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<!-- <meta http-equiv="refresh" content="5"> -->
+
+<script type="text/javascript">
+	
+function table(a,b,c)
+{
+var str ="<tr> <th> "+ a+"</th> "+" <th> "+ b+"</th> "+"<th> "+ c+"</th></tr>"; 
+document.getElementById('t').innerHTML = str;
+
+}
+
+</script>
+
+</head>
+<body>
+<fieldset>
+	<legend style="text-align: center;">Sign Up</legend>
+
+
+
+<form action="">
+	<table border="5px">
+		<tr>
+			<td>Enter your name <input type="type" name="txt1" id="txt"> </td>
+		</tr>
+
+		<tr>
+			<td> Enter password <input type="password" name="pass" id="pass"> </td>
+		</tr>
+		<tr>
+			<td> Enter email <input type="email" name="email" id="email"> </td>
+		</tr>
+		
+		</tr>
+		<tr><td><input type="button" name="" value="submit" onclick="table(document.getElementById('txt').value,document.getElementById('pass').value,document.getElementById('email').value)"></td></tr>
+</table>
+
+</form>
+
+
+<table id="t">
+	
+
+</table>
+
+</fieldset
+></body>
+</html>

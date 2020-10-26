@@ -1,0 +1,79 @@
+var col=[10,20,30,40]
+undefined
+var sum=col.reduce((a,b)=>a+b)
+undefined
+sum
+100
+var even=col.filter(v=>v%2==0)
+undefined
+even
+(4) [10, 20, 30, 40]0: 101: 202: 303: 40length: 4__proto__: Array(0)
+var mul=col.map(v=>v*2)
+undefined
+mul
+(4) [20, 40, 60, 80]
+function print(val){
+    console.log(print)}
+undefined
+col.forEach(print)
+4VM894:2 ƒ print(val){
+    console.log(print)}
+undefined
+function print(val){
+    console.log(value)}
+undefined
+function print(val){
+    console.log(val)}
+undefined
+col.forEach(print)
+VM1012:2 10
+VM1012:2 20
+VM1012:2 30
+VM1012:2 40
+undefined
+
+
+
+var ppl=[{name:'Hello',age:22},{name:'bye',age:25},{name:'mama',age:30}]
+undefined
+ppl
+(3) [{…}, {…}, {…}]0: {name: "Hello", age: 22}1: {name: "bye", age: 25}2: {name: "mama", age: 30}length: 3__proto__: Array(0)
+ppl[0]
+{name: "Hello", age: 22}age: 22name: "Hello"__proto__: Object
+ppl[0].name
+"Hello"
+ppl[0].age
+22
+
+
+
+
+var ppl=[{name:'Hello',age:22},{name:'bye',age:25},{name:'mama',age:15}]
+undefined
+function teenage(person){
+    return person.age>10 && person.age<20}
+undefined
+var teenage=ppl.find(teenage)
+undefined
+teenage.name
+"mama"
+
+
+
+let age=prompt("Enter your age")
+undefined
+let welcome =(age<18)? ()=>alert("hello") : ()=>alert("greetings");
+undefined
+welcome
+()=>alert("greetings")
+
+
+
+
+const ask8=(question,yes,no)=>{
+	if(confirm(question))yes()
+	else no()
+}
+undefined
+ask8("Do you agree?",()=>alert("yes"),()=>alert("no"));
+undefined

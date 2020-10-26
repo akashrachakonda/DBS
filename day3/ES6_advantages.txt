@@ -1,0 +1,356 @@
+var col=[10,20,30,40]
+undefined
+var sum=col.reduce((a,b)=>a+b)
+undefined
+sum
+100
+var even=col.filter(v=>v%2==0)
+undefined
+even
+(4) [10, 20, 30, 40]0: 101: 202: 303: 40length: 4__proto__: Array(0)
+var mul=col.map(v=>v*2)
+undefined
+mul
+(4) [20, 40, 60, 80]
+function print(val){
+    console.log(print)}
+undefined
+col.forEach(print)
+4VM894:2 ƒ print(val){
+    console.log(print)}
+undefined
+function print(val){
+    console.log(value)}
+undefined
+function print(val){
+    console.log(val)}
+undefined
+col.forEach(print)
+VM1012:2 10
+VM1012:2 20
+VM1012:2 30
+VM1012:2 40
+undefined
+
+
+
+var ppl=[{name:'Hello',age:22},{name:'bye',age:25},{name:'mama',age:30}]
+undefined
+ppl
+(3) [{…}, {…}, {…}]0: {name: "Hello", age: 22}1: {name: "bye", age: 25}2: {name: "mama", age: 30}length: 3__proto__: Array(0)
+ppl[0]
+{name: "Hello", age: 22}age: 22name: "Hello"__proto__: Object
+ppl[0].name
+"Hello"
+ppl[0].age
+22
+
+
+
+
+var ppl=[{name:'Hello',age:22},{name:'bye',age:25},{name:'mama',age:15}]
+undefined
+function teenage(person){
+    return person.age>10 && person.age<20}
+undefined
+var teenage=ppl.find(teenage)
+undefined
+teenage.name
+"mama"
+
+
+
+let age=prompt("Enter your age")
+undefined
+let welcome =(age<18)? ()=>alert("hello") : ()=>alert("greetings");
+undefined
+welcome
+()=>alert("greetings")
+
+
+
+
+const ask8=(question,yes,no)=>{
+	if(confirm(question))yes()
+	else no()
+}
+undefined
+ask8("Do you agree?",()=>alert("yes"),()=>alert("no"));
+undefined
+
+
+
+
+---------------------REPL--------------
+
+Type ".help" for more information.
+> console.log('first')
+first
+undefined
+> console.log('second')
+second
+undefined
+> .save lines.js
+Session saved to: lines.js
+> .load lines.js
+console.log('first')
+console.log('second')
+first
+second
+undefined
+
+
+
+
+
+
+var temp=100
+undefined
+> console.log('value'+temp)
+value100
+undefined
+> console.log(`value is ${temp})
+... console.log(`value is ${temp}')
+Thrown:
+console.log(`value is ${temp})
+                            ^^
+
+SyntaxError: missing ) after argument list
+> console.log(`value is ${temp}')
+> console.log(`value is ${temp}`)
+value is 100
+undefinedog(`value is ${temp}')
+>                                                                                                                       
+SyntaxError: missing ) after argument list
+
+
+
+
+------------------------------------------------
+
+
+PATTERN 7: EXPORT A NAMED PROTOTYPE
+        // qux.js
+    var Qux = function () {};
+    Qux.prototype.log = function () {
+      console.log('baz!');
+    };
+    exports.Qux = Qux;
+
+
+    // app.js
+    var Qux = require('./qux.js').Qux;
+    var qux = new Qux();
+    qux.log();
+
+    
+    
+        
+
+
+PATTERN 6: EXPORT AN ANONYMOUS PROTOTYPE
+    
+    
+ // doo.js
+    var Doo = function () {};
+    Doo.prototype.log = function () {
+        console.log('doo!');
+    }
+    module.exports = Doo;
+
+// app.js
+    var Doo = require('./doo.js');
+    var doo = new Doo();
+    doo.log();
+
+
+PATTERN 5: EXPORT A NAMED OBJECT
+    
+    
+ // baz.js
+    var Baz = function () {};
+    Baz.prototype.log = function () {
+      console.log('baz!');
+    };
+
+    exports.Baz = new Baz();
+
+    // app.js
+    var baz = require('./baz.js').Baz;
+    baz.log();
+
+
+
+PATTERN 4: EXPORT AN ANONYMOUS OBJECT
+    
+      // buz.js
+    var Buz = function () {};
+    Buz.prototype.log = function () {
+      console.log('buz!');
+    };
+    module.exports = new Buz();
+
+  // app.js
+    var buz = require('./buz.js');
+    buz.log();
+
+
+    
+
+
+PATTERN 3: EXPORT A NAMED FUNCTION
+    
+    
+    // first.js
+    exports.fiz = function () {
+      console.log('fiz!');
+    }
+ 
+// app.js
+    var FOO = require('./first.js').fiz;
+    FOO();
+
+
+    
+    
+
+
+PATTERN 2: EXPORT AN ANONYMOUS FUNCTION
+    
+    
+  // bar.js
+    module.exports = function () {
+      console.log('bar!');
+    }
+ 
+// app.js
+    var bar = require('./bar.js');
+    bar();
+
+
+
+
+
+PATTERN 1: DEFINE A GLOBAL
+    
+// foo.js
+    foo = function () {
+      console.log('foo!');
+    }
+
+    // app.js
+    require('./foo.js');
+    foo();
+
+
+    -------------------------------------------------
+
+
+
+    // Interpolate variable bindings
+var name = "Bob", time = "today";
+`Hello ${name}, how are you ${time}?`
+
+// Unescaped template strings
+String.raw`In ES5 "\n" is a line-feed.`
+
+// Construct an HTTP request prefix is used to interpret the replacements and construction
+GET`http://foo.org/bar?a=${a}&b=${b}
+    Content-Type: application/json
+    X-Credentials: ${credentials}
+    { "foo": ${foo},
+      "bar": ${bar}}`(myOnReadyStateChangeHandler);
+
+    
+    
+    
+
+
+In ES6, we would use export and import. For example, this is our library in the ES6 module.js file:
+export var port = 3000
+export function getAccounts(url) {
+  ...
+}
+In the importer ES6 file main.js, we use import {name} from 'my-module'syntax. For example,
+import {port, getAccounts} from 'module'
+console.log(port) // 3000
+Or we can import everything as a variable service in main.js:
+import * as service from 'module'
+console.log(service.port) // 3000
+
+
+
+
+
+
+
+-------------------------------------------------
+
+
+var a = 5;
+var b = 10;
+console.log("Fifteen is " + (a + b) + " and\nnot " + (2 * a + b) + ".");
+// "Fifteen is 15 and
+// not 20."
+
+var a = 5;
+var b = 10;
+console.log(`Fifteen is ${a + b} and\nnot ${2 * a + b}.`);
+// "Fifteen is 15 and
+// not 20."
+
+
+function tag(strings, ...values) {
+  console.log(strings.raw[0]); 
+  // "string text line 1 \n string text line 2"
+}
+
+tag`string text line 1 \n string text line 2`;
+
+
+String.raw`Hi\n${2+3}!`;
+// "Hi\n5!"
+
+
+
+
+
+
+var a = 5;
+var b = 10;
+
+function tag(strings, ...values) {
+  console.log(strings[0]); // "Hello "
+  console.log(strings[1]); // " world "
+  console.log(strings[2]); // ""
+  console.log(values[0]);  // 15
+  console.log(values[1]);  // 50
+
+  return "Bazinga!";
+}
+
+tag`Hello ${ a + b } world ${ a * b }`;
+
+// "Bazinga!"
+
+
+
+
+
+
+SyntaxEDIT
+var a, b, rest;
+[a, b] = [1, 2];
+console.log(a); // 1
+console.log(b); // 2
+
+[a, b, ...rest] = [1, 2, 3, 4, 5]
+console.log(a); // 1
+console.log(b); // 2
+console.log(rest); // [3, 4, 5]
+
+({a, b} = {a:1, b:2})
+console.log(a); // 1
+console.log(b); // 2
+
+

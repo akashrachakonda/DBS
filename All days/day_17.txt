@@ -1,0 +1,970 @@
+https://gofile.io/d/7NmPyj
+    
+    
+    
+    
+
+
+https://gofile.io/d/2y6tLa
+    
+    
+    
+    
+
+
+https://gofile.io/d/kWQcGY
+    
+    
+
+
+Core (spring-security-core.jar) – This module contains the APIs for basic authentication and access-control related mechanism. This is mandatory for ant spring security applications.
+Remoting (spring-security-remoting.jar) – This module provides integration to the Spring Remoting. You don’t need to include this module unless you are writing remote client applications.
+Web (spring-security-web.jar) – This module contains APIs for servlet filters and any web based authentication like access restriction for URLs. Any web application would require this module.
+Config (spring-security-config.jar) – Contains the security namespace parsing code & Java configuration code. You need it if you are using the Spring Security XML namespace for configuration. If you are not using XML configurations, you can ignore this module.
+LDAP (spring-security-ldap.jar)– Required if you need to use LDAP authentication or manage LDAP user entries.
+ACL (spring-security-acl.jar) – Specialized domain object ACL implementation. Used to apply security to specific domain object instances within your application.
+CAS (spring-security-cas.jar) – Spring Security’s CAS client integration. If you want to use Spring Security web authentication with a CAS single sign-on server.
+OpenID (pring-security-openid.jar) – OpenID web authentication support. Used to authenticate users against an external OpenID server.
+Test (spring-security-test.jar)– Support for testing with Spring Security.
+
+
+
+
+
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+
+
+
+
+
+
+Spring security is the highly customizable authentication and access-control framework. This is the security module for securing spring applications. But, this can also be used for non-spring based application with few extra configurations to enable the security features. Spring Security is a framework that focuses on providing both authentication and authorization to Java applications.
+“Authentication” is the process of establishing a principal is who they claim to be (a “principal” generally means a user, device or some other system which can perform an action in your application). Eg:- Who you are?   (user id and password)
+“Authorization” refers to the process of deciding whether a principal is allowed to perform an action within your application. To arrive at the point where an authorization decision is needed, the identity of the principal has already been established by the authentication process. These concepts are common, and not at all specific to Spring Security. Eg: What you can do (services)
+
+    
+    
+    
+    
+
+import React, {Component} from 'react';
+import axios from 'axios'
+
+ class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedCustomer: 1
+    }
+  }
+
+  //function which is called the first time the component loads
+  componentDidMount() {
+    
+    this.getCustomerData();
+  }
+
+  //Function to get the Customer Data from REST API
+  getCustomerData() {
+    console.log("Inside get Customer data")
+    axios.get('http://localhost:8080/api/employee').then(response => {
+        console.log("RECORDS "+response.data[0].name)
+        this.setState({customerList: response})
+      })
+  };
+
+  render() {
+  
+    return (<div>TEST</div>);
+  }
+
+}
+
+export default App;
+
+
+
+
+
+
+
+
+https://gofile.io/d/t8VYjT
+    
+    
+
+
+package in.bushansirgur.springboot.crudapi.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.bushansirgur.springboot.crudapi.model.Employee;
+import in.bushansirgur.springboot.crudapi.service.EmployeeService;
+
+@RestController
+@RequestMapping("/api")
+public class EmployeeController {
+
+	@Autowired
+	private EmployeeService employeeService;
+	
+	@PostMapping("/employee")
+	public Employee save(@RequestBody Employee employeeObj) {
+		employeeService.save(employeeObj);
+		return employeeObj;
+	}
+	
+	@GetMapping("/employee")
+	public List<Employee> get(){
+		return employeeService.get();
+	}
+	
+	@GetMapping("/employee/{id}")
+	public Employee get(@PathVariable int id) {
+		Employee employeeObj = employeeService.get(id);
+		if(employeeObj == null) {
+			throw new RuntimeException("Employee not found for the Id:"+id);
+		}
+		return employeeObj;
+	}
+	
+	@PutMapping("/employee")
+	public Employee update(@RequestBody Employee employeeObj) {
+		employeeService.save(employeeObj);
+		return employeeObj;
+	}
+	
+	@DeleteMapping("/employee/{id}")
+	public String delete(@PathVariable int id) {
+		employeeService.delete(id);
+		return "Employee has been deleted with id:"+id;
+	}
+}
+
+
+
+
+
+
+
+package in.bushansirgur.springboot.crudapi.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+
+
+import in.bushansirgur.springboot.crudapi.model.Employee;
+
+@Repository
+public class EmployeeDAOImpl implements EmployeeDAO {
+
+	@Autowired
+	private EntityManager entityManager;
+	
+	@Override
+	public List<Employee> get() {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Query<Employee> query = currentSession.createQuery("from Employee", Employee.class);
+		List<Employee> list = query.getResultList();
+		return list;
+	}
+
+	@Override
+	public Employee get(int id) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Employee employeeObj = currentSession.get(Employee.class, id);
+		return employeeObj;
+	}
+
+	@Override
+	public void save(Employee employee) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		currentSession.saveOrUpdate(employee);
+	}
+
+	@Override
+	public void delete(int id) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Employee employeeObj = currentSession.get(Employee.class, id);
+		currentSession.delete(employeeObj);
+	}
+
+}
+
+
+
+
+
+
+package in.bushansirgur.springboot.crudapi.dao;
+
+import java.util.List;
+
+import in.bushansirgur.springboot.crudapi.model.Employee;
+
+public interface EmployeeDAO {
+	
+	List<Employee> get();
+	
+	Employee get(int id);
+	
+	void save(Employee employee);
+	
+	void delete(int id); 
+}
+
+
+
+
+
+package in.bushansirgur.springboot.crudapi.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import in.bushansirgur.springboot.crudapi.dao.EmployeeDAO;
+import in.bushansirgur.springboot.crudapi.model.Employee;
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+
+	@Autowired
+	private EmployeeDAO employeeDAO; 
+	
+	@Transactional
+	@Override
+	public List<Employee> get() {
+		return employeeDAO.get();
+	}
+
+	@Transactional
+	@Override
+	public Employee get(int id) {
+		return employeeDAO.get(id);
+	}
+
+	@Transactional
+	@Override
+	public void save(Employee employee) {
+		employeeDAO.save(employee);
+	}
+
+	@Transactional
+	@Override
+	public void delete(int id) {
+		employeeDAO.delete(id);
+	}
+
+}
+
+
+
+
+
+
+package in.bushansirgur.springboot.crudapi.service;
+
+import java.util.List;
+
+import in.bushansirgur.springboot.crudapi.model.Employee;
+
+public interface EmployeeService {
+	
+	List<Employee> get();
+	
+	Employee get(int id);
+	
+	void save(Employee employee);
+	
+	void delete(int id); 
+}
+
+
+
+
+
+package in.bushansirgur.springboot.crudapi.model;
+
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbl_employee")
+public class Employee {
+
+	@Column
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	@Column
+	private String name;
+	@Column
+	private String gender;
+	@Column
+	private String department;
+	@Column
+	private Date dob;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", department=" + department + ", dob="
+				+ dob + "]";
+	}
+	
+	
+}
+
+
+
+
+
+
+1. Create MySQL database
+
+CREATE DATABASE crudapi
+2. Create table or Run the SQL script file
+
+CREATE TABLE tbl_employee
+(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    	name VARCHAR(255),
+    	gender VARCHAR(255),
+    	department VARCHAR(255),
+    	dob DATE
+)
+
+3] 
+GET /api/employee
+POST /api/employee
+GET /api/employee/{id}
+
+PUT /api/employee
+
+DELETE /api/employee/{id}
+
+
+
+
+spring.datasource.url=jdbc:mysql://localhost:3306/crudapi
+spring.datasource.username=root
+spring.datasource.password=shital@123
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.1.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>in.bushansirgur.springboot</groupId>
+	<artifactId>crudapi</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>crudapi</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<start-class>in.bushansirgur.springboot.crudapi.CrudapiApplication</start-class>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="HOME_LOG" value="logs/app.log"/>
+
+    <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${HOME_LOG}</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/archived/app.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- each archived file, size max 10MB -->
+            <maxFileSize>10MB</maxFileSize>
+            <!-- total size of all archive files, if total size > 20GB, 
+                it will delete old archived file -->
+            <totalSizeCap>20GB</totalSizeCap>
+            <!-- 60 days to keep -->
+            <maxHistory>60</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.training.org" level="debug" additivity="false">
+        <appender-ref ref="FILE-ROLLING"/>
+    </logger>
+
+    <root level="error">
+        <appender-ref ref="FILE-ROLLING"/>
+    </root>
+
+</configuration>
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?> 
+<Configuration>   
+	<Appenders>     
+		<Console name="Console" target="SYSTEM_OUT">       
+			<PatternLayout pattern="[log4j] %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"/>     
+		</Console>
+	</Appenders>
+	<Loggers>
+		<!-- LOG everything at INFO level -->     
+		<Root level="info">
+			<AppenderRef ref="Console" />
+		</Root>
+		<!-- LOG "com.example" at TRACE level -->
+		<Logger name="com.example" level="trace">
+		</Logger>
+	</Loggers>
+</Configuration>
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>
+        %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+      </Pattern>
+    </layout>
+  </appender>
+
+  <root level="info">
+    <appender-ref ref="Console" />
+  </root>
+
+  <!-- Log everything at the TRACE level -->
+  <logger name="com.training.org" level="trace" additivity="false">
+    <appender-ref ref="Console" />
+  </logger>
+</configuration>
+
+
+
+
+
+
+
+Let's see how to include a Logback configuration with a different color and logging pattern, with separate specifications for console and file output, and with a decent rolling policy to avoid generating huge log files.
+First of all, we should go toward a solution which allows handling our logging settings alone, instead of polluting application.properties, which is commonly used for many other application settings.
+When a file in the classpath has one of the following names, Spring Boot will automatically load it over the default configuration:
+logback-spring.xml
+logback.xml
+logback-spring.groovy
+logback.groovy
+
+
+
+
+
+
+
+# Pattern:
+ 
+logging.pattern.console=%d{yy-MMMM-dd HH:mm:ss:SSS} %5p %t %c{2}:%L - %m%n
+ 
+# Output:
+ 
+18-January-17 02:21:20:317  WARN http-nio-8080-exec-1 o.o.s.c.MainController:22 - This is WARN
+18-January-17 02:21:20:320 ERROR http-nio-8080-exec-1 o.o.s.c.MainController:23 - This is ERROR
+
+                
+                
+                
+
+
+# Pattern:
+ 
+logging.pattern.console= %d{dd/MM/yyyy HH:mm:ss.SSS} %-5level [%thread] %logger{115} - %msg%n
+ 
+# Output:
+ 
+17/01/2018 02:15:15.052 WARN  [http-nio-8080-exec-1] org.o7planning.sblogging.controller.MainController - This is WARN
+17/01/2018 02:15:15.054 ERROR [http-nio-8080-exec-1] org.o7planning.sblogging.controller.MainController - This is ERROR
+
+
+        
+        
+        
+        
+
+And you can change  "Logging pattern" by customizing the following properties:
+logging.pattern.console
+logging.pattern.file
+
+# Pattern:
+ 
+logging.pattern.console= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n
+ 
+# Output:
+ 
+2018-Jan-17 01:58:49.958 WARN  [http-nio-8080-exec-1] o.o.s.c.MainController - This is WARN
+2018-Jan-17 01:58:49.960 ERROR [http-nio-8080-exec-1] o.o.s.c.MainController - This is ERROR
+
+
+
+
+logging.pattern.console= %d{dd-MMM-yyyy HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n
+
+
+
+
+
+
+https://github.com/in28minutes/spring-boot-examples
+    
+    
+    
+    
+
+
+package com.training.org;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Image {
+	
+	@Id @GeneratedValue
+	private Long id;
+	private String name;
+	
+	public Image(String name) {
+		this.name=name;
+	}
+	
+	public Image(Long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+}
+
+
+
+
+
+
+
+
+
+package com.training.org;
+
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+@Service
+public class HelloMessageService {
+	@Value("${name:unkown}")
+	private String name;
+	
+	
+	public String getMessage() {
+		return getMessage(name);
+		
+	}
+	
+	public String getMessage(String name) {
+		return "Hello"+name;
+	}
+}
+
+
+
+
+
+
+
+
+package com.training.org;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
+
+@SpringBootApplication
+public class CommandLineRunnerExampleApplication extends SpringBootServletInitializer{
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		System.out.println("SpringApplicationBuilder is called");
+		return application.sources(CommandLineRunnerExampleApplication.class);
+	}
+	public static void main(String[] args) throws Exception {
+		System.out.println("Main is called");
+		SpringApplication.run(CommandLineRunnerExampleApplication.class, args);
+	}
+	@Bean
+	public ApplicationStartupRunner schedulerRunner() {
+		System.out.println("schedulerRunner is called");
+		return new ApplicationStartupRunner();
+	}
+
+
+}	
+
+
+@Order(value=3)
+@Component
+class ApplicationStartupRunnerOne implements CommandLineRunner {
+	protected final Log logger = LogFactory.getLog(getClass());
+	@Autowired
+	private HelloMessageService helloMessageService;
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println(helloMessageService.getMessage());
+		System.out.println("ApplicationStartupRunnerOne is called");
+		logger.info("ApplicationStartupRunnerOne run method Started !!");
+	}
+}
+
+
+
+
+
+@Order(value=2)
+@Component
+class ApplicationStartupRunnerTwo implements CommandLineRunner {
+	protected final Log logger = LogFactory.getLog(getClass());
+	@Override
+	public void run(String... args) throws Exception {
+
+
+		System.out.println("ApplicationStartupRunnerTwo is called");
+		logger.info("ApplicationStartupRunnerTwo run method Started !!");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+package com.training.org;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.boot.CommandLineRunner;
+
+public class ApplicationStartupRunner implements CommandLineRunner{
+	protected final Log logger=LogFactory.getLog(getClass());
+	@Override
+	public void run(String... args) throws Exception {
+		logger.info("ApplicaitonStartupRunner run method is started");
+
+	}
+}
+
+
+
+
+
+
+package com.training.org;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
+
+
+@SpringBootApplication
+public class CommandLineRunnerExampleApplication extends SpringBootServletInitializer{
+	
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+    	System.out.println("------ > configure method");
+        return application.sources(CommandLineRunnerExampleApplication.class);
+    }
+    public static void main(String[] args) throws Exception {
+    	System.out.println("------ > Before ");
+        SpringApplication.run(CommandLineRunnerExampleApplication.class, args);
+        System.out.println("------ > After ");
+    }
+    @Bean
+    public ApplicationStartupRunner schedulerRunner() {
+    	System.out.println("------ > schedulerRunner ");
+        return new ApplicationStartupRunner();
+    }
+
+}
+
+
+
+
+
+
+
+
+
+Register ApplicationStartupRunner bean
+    @SpringBootApplication
+public class SpringBootWebApplication extends SpringBootServletInitializer {
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(SpringBootWebApplication.class);
+    }
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(SpringBootWebApplication.class, args);
+    }
+    @Bean
+    public ApplicationStartupRunner schedulerRunner() {
+        return new ApplicationStartupRunner();
+    }
+}
+
+    
+    
+3) Using CommandLineRunner as Bean
+You can define a bean in SpringBootApplication which return the class that implements CommandLineRunner interface.
+ApplicationStartupRunner.java
+
+public class ApplicationStartupRunner implements CommandLineRunner {
+    protected final Log logger = LogFactory.getLog(getClass());
+    @Override
+    public void run(String... args) throws Exception {
+        logger.info("Application Started !!");
+    }
+}
+
+
+
+2) Implement CommandLineRunner in @SpringBootApplication
+@SpringBootApplication
+public class SpringBootWebApplication extends SpringBootServletInitializer implements CommandLineRunner {
+ 
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(SpringBootWebApplication.class);
+    }
+     public static void main(String[] args) throws Exception {
+        SpringApplication.run(SpringBootWebApplication.class, args);
+    }
+     @Override
+    public void run(String... args) throws Exception {
+        logger.info("Application Started !!");
+    }
+}
+
+
+
+
+1] Using CommandLineRunner as @Component
+@Component
+public class ApplicationStartupRunner implements CommandLineRunner {
+    protected final Log logger = LogFactory.getLog(getClass());
+ 
+    @Override
+    public void run(String... args) throws Exception {
+        logger.info("ApplicationStartupRunner run method Started !!");
+    }
+}
+
+
+
+
+
+package com.training.org;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+
+@SpringBootApplication
+public class CommandLineRunnerExampleApplication implements CommandLineRunner{
+	
+	protected final Log logger=LogFactory.getLog(getClass());
+
+	public static void main(String[] args) {
+		System.out.println("Before Application Start");
+		SpringApplication.run(CommandLineRunnerExampleApplication.class, args);
+		System.out.println("After Application Start");
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println("Inside Run method command line runner");
+		logger.info("ApplicaitonStartupRunner run method is started");
+		
+	}
+
+}
+
+
+
+
+
+How to use CommandLineRunner
+
+You can use CommandLineRunner interface in three ways:
+
+1) Using CommandLineRunner as @Component
+2) Implement CommandLineRunner in @SpringBootApplication
+3) Using CommandLineRunner as Bean
+
+
+
+
+Command line runners are a useful functionality to execute the various types of code that only have to be run once, right after application startup.
+FYI, Spring Batch relies on these runners in order to trigger the execution of the jobs.
+We can use the dependency injection to our advantage in order to wire in whatever dependencies that we need and in whatever way we want – in run() method implementation.

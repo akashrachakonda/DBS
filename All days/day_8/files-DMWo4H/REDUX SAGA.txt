@@ -1,0 +1,15 @@
+Redux-thunk
+Redux-thunk is the standard way of performing asynchronous operations in Redux.
+
+For our purposes, a thunk represents a function that is not called immediately, only when needed. Take the example from redux-thunk’s documentation:
+
+
+The value 3 is assigned immediately to x.
+
+However, when we have something like the following statement:
+
+
+The sum operation is not executed immediately, only when you call foo(). This makes foo a thunk.
+
+Redux-thunk allows an action creator to dispatch a function in addition to a plain object, converting the action creator into a thunk.
+

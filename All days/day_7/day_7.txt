@@ -1,0 +1,735 @@
+1	What is React?
+2	What are the major features of React?
+3	What is JSX?
+4	What is the difference between Element and Component?
+5	How to create components in React?
+6	When to use a Class Component over a Function Component?
+7	What are Pure Components?
+8	What is state in React?
+9	What are props in React?
+10	What is the difference between state and props?
+
+
+
+
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addTodo } from './actions/actions'
+
+import AddTodo from './components/AddTodo.jsx'
+import TodoList from './components/TodoList.jsx'
+
+class App extends Component {
+   render() {
+      const { dispatch, visibleTodos } = this.props
+	
+      return (
+         <div>
+			
+            <AddTodo
+               onAddClick = {text =>dispatch(addTodo(text))}
+            />
+				
+            <TodoList todos = {visibleTodos}/>
+			
+         </div>
+      )
+   }
+}
+
+function select(state) {
+   return {
+      visibleTodos: state.todos
+   }
+}
+
+export default connect(select)(App)
+
+
+
+
+
+
+
+
+
+
+
+
+https://gofile.io/d/HesEgN
+    
+    
+    
+
+
+
+
+https://gofile.io/d/ihxsUO
+    
+    
+    
+    
+
+
+components/TodoList.js
+import React, { Component, PropTypes } from 'react'
+import Todo from './Todo.jsx'
+
+export default class TodoList extends Component {
+   render() {
+      return (
+         <ul>
+            {this.props.todos.map(todo ⇒
+               <Todo
+               key = {todo.id}
+               {...todo}
+               />
+            )}
+         </ul>
+      )
+   }
+}
+
+
+
+
+https://gofile.io/d/ihxsUO
+
+
+components/Todo.js
+import React, { Component, PropTypes } from 'react'
+
+export default class Todo extends Component {
+   render() {
+      return (
+         <li>
+            {this.props.text}
+         </li>
+      )
+   }
+}
+
+
+
+
+
+
+components/AddTodo.js
+import React, { Component, PropTypes } from 'react'
+
+export default class AddTodo extends Component {
+   render() {
+      return (
+         <div>
+            <input type = 'text' ref = 'input' />
+				
+            <button onClick = {(e) ⇒ this.handleClick(e)}>
+               Add
+            </button>
+				
+         </div>
+      )
+   }
+
+   handleClick(e) {
+      const node = this.refs.input
+      const text = node.value.trim()
+      this.props.onAddClick(text)
+      node.value = ''
+   }
+}
+
+
+
+
+
+
+
+
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addTodo } from './actions/actions'
+import AddTodo from './components/AddTodo.jsx'
+import TodoList from './components/TodoList.jsx'
+class App extends Component {
+   render() {
+      const { dispatch, visibleTodos } = this.props
+      return (
+         <div>
+            <AddTodo onAddClick = {text ⇒ dispatch(addTodo(text))} />
+            <TodoList todos = {visibleTodos}/>
+			
+         </div>
+      )
+   }
+}
+function select(state) {
+   return {
+      visibleTodos: state.todos
+   }
+}
+
+export default connect(select)(App)
+
+
+
+
+
+
+Step 6 - Root Component
+The App component is the root component of the app. Only root component should be aware of a redux. The important part to notice is the connect function which is used for connecting our root component App to the store. This function takes select function as an argument. The select function takes state from the store and returns the props (visibleTodos) that we can use in our components.
+
+
+
+
+
+
+Step 5 - Store
+The store is the place that holds the app's state. It is very easy to create store once you have reducers. We are passing store property to the provider element which wraps our route component.
+
+main.js
+import React from 'react'
+
+import { render } from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+import App from './App.jsx'
+import todoApp from './reducers/reducers'
+let store = createStore(todoApp)
+let rootElement = document.getElementById('app')
+render(
+   <Provider store = {store}>
+      <App />
+   </Provider>,
+   rootElement
+)
+
+
+
+
+
+
+
+
+import { combineReducers } from 'redux'
+import { ADD_TODO } from '../actions/actions'
+
+function todo(state, action) {
+   switch (action.type) {
+      case ADD_TODO:
+         return {
+            id: action.id,
+            text: action.text,
+         }
+      default:
+      return state
+   }
+}
+function todos(state = [], action) {
+   switch (action.type) {
+      case ADD_TODO:
+         return [
+            state, todo(undefined, action)
+         ]
+      default:
+      return state
+   }
+}
+const todoApp = combineReducers({
+   todos
+})
+export default todoApp
+
+
+
+
+
+
+
+Step 4 - Reducers
+While actions only trigger changes in the app, the reducers specify those changes. We are using switch statement to search for a ADD_TODO action. The reducer is a function that takes two parameters (state and action) to calculate and return updated state. The first function will be used to create new item, while the second one will push that item to the list. At the end we are using combineReducers helper function where we can add any new reducers we might use in the future.
+
+
+
+
+Step 3 - Actions
+Actions are JavaScript objects that use type property to inform about the data that should be sent to the store. We are defining ADD_TODO action that will be used for adding new item to our list. The addTodo function is action creator that returns our action and sets an id for every created item.
+
+actions/actions.js
+
+export const ADD_TODO = 'ADD_TODO'
+
+let nextTodoId = 0;
+
+export function addTodo(text) {
+   return {
+      type: ADD_TODO,
+      id: nextTodoId++,
+      text
+   };
+}
+
+
+
+
+
+
+
+
+Step 1 - Installing Redux
+We will install Redux via command prompt window.
+
+C:\Users\username\Desktop\reactApp>npm install --save react-redux
+
+    
+
+
+Predictability of outcome – Since there is always one source of truth, i.e. the store, there is no confusion about how to sync the current state with actions and other parts of the application.
+Maintainability – The code becomes easier to maintain with a predictable outcome and strict structure.
+Server side rendering – You just need to pass the store that is created on the server, to the client side. This is very useful for initial render and provides a better user experience as it optimizes the application performance.
+Developer tools – From actions to state changes, developers can track everything going on in the application in real time.
+Community and ecosystem – Redux has a huge community behind it which makes it even more captivating to use. A large community of talented individuals contribute to the betterment of the library and develop various applications with it.
+Ease of testing – Redux code are mostly functions which are small, pure and isolated. This makes the code testable and independent.
+Organization – Redux is very precise about how the code should be organized, this makes the code more consistent and easier when a team works with it.
+
+
+
+
+
+Redux follows three fundamental principles:
+
+Single source of truth: The state of the entire application is stored in an object/ state tree within a single store. The single state tree makes it easier to keep track of the changes over time and debug or inspect the application. For a faster development cycle, it helps to persist the application’s state in development.
+
+State is read-only: The only way to change the state is to trigger an action. An action is a plain JS object describing the change. Just like the state is the minimal representation of data, the action is the minimal representation of the change to that data. An action must have a type property (conventionally a String constant). All the changes are centralized and occur one by one in a strict order.
+
+Changes are made with pure functions: In order to specify how the state tree is transformed by actions, you need pure functions. Pure functions are those whose return values depend solely on the values of their arguments. Reducers are just pure functions that take the previous state and an action and return the next state. You can have a single reducer in your application and as it grows, you can split it off into smaller reducers. These smaller reducers will then manage specific parts of the state tree.
+
+    
+
+
+
+Just like React, Redux is also a library which is used widely for front-end development. It is basically a tool for managing both data-state and UI-state in JavaScript applications. Redux separates the application data and business logic into its own container in order to let React manage just the view. Rather than a traditional library or a framework, it’s an application data-flow architecture. It is most compatible with Single Page Applications (SPAs) where the management of the states over time can get complex.
+
+Redux was created by Dan Abramov and Andrew Clark around June 2015. It was inspired by Facebook’s Flux and influenced by functional programming language Elm. Redux got popular very quickly because of its simplicity, small size (only 2 KB) and great documentation.
+
+
+
+
+
+Thus, with Redux, it becomes clear where the components get their state from as well as where should they send their states to. Now the component initiating the change does not have to worry about the list of components needing the state change and can simply dispatch the change to the store. This is how Redux makes the data flow easier.
+
+
+
+Redux provides a “store” as a solution to this problem. A store is a place where you can store all your application state together. Now the components can “dispatch” state changes to the store and not directly to the other components. Then the components that need the updates about the state changes can “subscribe” to the store.
+
+
+You can write Redux apps with React, Angular, Ember, jQuery, or vanilla JavaScript. That said, Redux works especially well with libraries like React and Deku because they let you describe UI as a function of state, and Reduxemits state updates in response to actions. We will use Reactto build our simple todo app.
+Redux is a simple, truly extensible options framework for WordPress themes and plugins. Built on the WordPress Settings API, Redux supports a multitude of field types as well as custom error handling, custom field & validation types, and import/export functionality.
+
+
+
+
+
+
+React always flows from parent to child components which makes it unidirectional. This surely keeps our data organized and helps us in controlling the application better. Because of this, the application’s state is contained in specific stores and as a result, the rest of the components remain loosely coupled. This makes our application more flexible leading to increased efficiency. That’s why the communication from a parent component to a child component is convenient.
+But what happens when we try to communicate from a non-parent component?
+
+A child component can never pass data back up to the parent component. React does not provide any way for direct component-to-component communication. Even though React has features to support this approach, it is considered to be a poor practice. It is prone to errors and leads to spaghetti code. So, how can two non-parent components pass data to each other?
+
+This is where the React fails to provide a solution and Redux comes into the picture.
+
+
+
+    
+
+
+Flux is a pattern and Redux is a library. ... Both Flux and Redux have actions. Actions can be compared to events (or what trigger events). In Flux, an action is a simple JavaScript object, and that's the default case in Redux too, but when using Redux middleware, actions can also be functions 
+
+
+
+
+
+
+This is simple explanation of the flux concept. In our next tutorial we will explain how to implement this into your app.
+Actions − Actions are sent to dispatcher to trigger the data flow.
+Dispatcher − This is central hub of the app. All the data is dispatched and sent to the stores.
+Store − Store is the place where the application state and logic are held. Every store is maintaining particular state and it will update it when needed.
+View − The view will receive data from the store and re render the app.
+
+
+Flux Pros
+Single directional data flow is easy to understand.
+The app is easier to maintain.
+The app parts are decoupled.
+
+
+
+
+
+
+
+
+
+
+The return value of the impure functions does not solely depend on its arguments
+Hence, if you call the impure functions with the same set of arguments, you might get the different return values
+For example, Math.random(), Date.now()
+They may have any side effects like network or database calls
+They may modify the arguments which are passed to them
+For example,
+
+
+function squareAll(items) {
+
+  var len = items.length;
+  for (var i = 0; i < len; i++) {
+    items[i] = items[i] * items[i];
+  }
+
+  return items;
+}
+
+
+
+
+
+
+The return value of the pure functions solely depends on its arguments
+Hence, if you call the pure functions with the same set of arguments, you will always get the same return values
+They do not have any side effects like network or database calls
+They do not modify the arguments which are passed to them
+For example,
+
+function calculateSquareArea(x) {
+   return x * x;
+}
+
+
+
+
+var Employee={age:30};
+
+function pureFunction(age){
+	age=age+5;
+	return age;
+}
+
+var c=pureFunction(Employee.age)
+
+//Here only age is passed as parameter and function is modifying only age
+
+
+
+
+var Employee={age:30};
+
+function impureFunction(emp){
+	emp.age=emp.age+5;
+	return emp.age;
+}
+
+var c=impureFunction(Employee)
+
+//Here Employee is object type and function is modifying it
+
+
+
+
+1] PURE function 
+function pureFunction(a,b){
+	return a+b;
+}
+
+var c=pureFunction(1,2);
+
+//pure function bacause it is only depends on parameter "a" and "b"
+
+
+
+
+
+
+
+2] Examples of Pure and Impure functions
+
+var b=1;
+function impureFunction(a){
+	return a+b;
+}
+var c=impureFunction(1);
+
+Impure function because it is dependent on external parameter "b"
+
+
+    
+
+
+import React from 'react'
+class App16 extends React.Component {
+    constructor(props) {
+      super(props);
+  
+      this.username = React.createRef();
+      this.password = React.createRef();
+      this.state = {
+        errors: []
+      };
+    }
+  
+    handleSubmit(event) {
+      const username = this.username.current.value;
+      const password = this.password.current.value;
+      const errors = this.handleValidation(username, password);
+  
+      if (errors.length > 0) {
+        this.setState({ errors });
+        return;
+      }
+      
+    };
+  
+    handleValidation  (username, password)  {
+      const errors = [];
+      if (username.length === 0) {
+        errors.push("Username cannot be empty");
+      }
+      
+      if (password.length < 6) {
+        errors.push("Password should be at least 6 characters long");
+      }
+      
+      return errors;
+    };
+  
+    render() {
+      const { errors } = this.state;
+      return (
+        <div>
+          <h1>React Ref Example</h1>
+            {errors.map(error => <p key={error}>{error}</p>)}
+            <div>
+              <label>Username:</label>
+              <input type="text" ref={this.username} />
+            </div>
+            <div>
+              <label>Password:</label>
+              <input type="text" ref={this.password} />
+            </div>
+            <div>
+              <button onClick={this.handleSubmit.bind(this)}>Submit</button>
+            </div>
+          
+        </div>
+      );
+    }
+  }
+
+  export default App16;
+
+
+
+
+    
+
+import React from 'react'
+
+
+class App15 extends React.Component{
+    constructor(props){
+        super(props)
+        this.textInput=React.createRef();
+        this.state={
+            value:''
+        }
+    }
+
+    handleSubmit(e){
+        // e.preventDefault();
+        this.setState({value:this.textInput.current.value})
+    }
+
+  render(){
+      return(
+      <div>
+          
+          <input type="text" ref={this.textInput}></input>
+        <button onClick={this.handleSubmit.bind(this)}>Submit</button>
+        
+        <h1> {this.state.value}</h1>
+      </div>)
+  }
+}
+
+export default App15
+
+
+
+
+
+import React from 'react'
+
+
+class App15 extends React.Component{
+    constructor(props){
+        super(props)
+        this.textInput=React.createRef();
+        this.state={
+            value:''
+        }
+    }
+
+    handleSubmit(e){
+        // e.preventDefault();
+        this.setState({value:this.textInput.current.value})
+    }
+
+  render(){
+      return(
+      <div>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+          <input type="text" ref={this.textInput}></input>
+        <button>Submit</button>
+        </form>
+        <h1> {this.state.value}</h1>
+      </div>)
+  }
+}
+
+export default App15
+
+
+
+
+
+
+
+import React from 'react'
+
+class App14 extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            saying:''
+        }
+    }
+
+    update(e){
+        this.setState({saying:this.refs.anything.value})
+    }
+
+
+  render(){
+      return(
+      <div>
+        Eshan Says <input type="text" ref="anything" onChange={this.update.bind(this)}></input>
+        <h1> {this.state.saying}</h1>
+
+
+      </div>)
+  }
+}
+
+export default App14
+
+
+
+
+
+
+
+
+
+import React from 'react'
+
+class App14 extends React.Component{
+  render(){
+      return(<div></div>)
+  }
+}
+
+export default App14
+
+
+
+
+
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+class App13 extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            data:''
+        }
+        this.updateState=this.updateState.bind(this)
+        this.clearInput=this.clearInput.bind(this)
+    }
+    updateState(e){
+        console.log("update state is called")
+        this.setState({data:e.target.value})
+    }
+
+    clearInput(){
+        console.log("clearInput is called")
+        this.setState({data:''})
+        ReactDOM.findDOMNode(this.refs.myInput).focus();
+    }
+
+
+    render(){
+        return(
+        <div>
+            Enter text here <input type="text" value={this.state.data} ref="myInput" onInput={this.updateState}></input>
+            <button onClick={this.clearInput}>CLEAR INPUT</button>
+            <h1>{this.state.data}</h1>
+
+
+        </div>);
+    }
+}
+
+
+export default App13;
+
+
+
+
+
+
+
+
+
+
+
+
+import React from 'react'
+
+class App13 extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            data:''
+        }
+        this.clearInput=this.clearInput.bind(this)
+    }
+
+    clearInput(){
+        console.log("clearInput is called")
+    }
+
+
+    render(){
+        return(
+        <div>
+            Enter text here <input type="text"></input>
+            <button onClick={this.clearInput}>CLEAR INPUT</button>
+
+
+        </div>);
+    }
+}
+
+
+export default App13;

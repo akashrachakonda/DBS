@@ -1,0 +1,22 @@
+virtual dom
+
+HTML DOM Navigator 
+
+chrome lunch.json
+
+generator
+
+redux middleware
+
+redux Saaga
+
+testing
+
+mocha
+
+chai
+
+
+jest	
+
+Enzyme

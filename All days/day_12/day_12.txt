@@ -1,0 +1,792 @@
+@GetMapping: It maps the HTTP GET requests on the specific handler method. It is used to create a web service endpoint that fetches It is used instead of using: @RequestMapping(method = RequestMethod.GET)
+@PostMapping: It maps the HTTP POST requests on the specific handler method. It is used to create a web service endpoint that creates It is used instead of using: @RequestMapping(method = RequestMethod.POST)
+@PutMapping: It maps the HTTP PUT requests on the specific handler method. It is used to create a web service endpoint that creates or updates It is used instead of using: @RequestMapping(method = RequestMethod.PUT)
+@DeleteMapping: It maps the HTTP DELETE requests on the specific handler method. It is used to create a web service endpoint that deletes a resource. It is used instead of using: @RequestMapping(method = RequestMethod.DELETE)
+@PatchMapping: It maps the HTTP PATCH requests on the specific handler method. It is used instead of using: @RequestMapping(method = RequestMethod.PATCH)
+@RequestBody: It is used to bind HTTP request with an object in a method parameter. Internally it uses HTTP MessageConverters to convert the body of the request. When we annotate a method parameter with @RequestBody, the Spring framework binds the incoming HTTP request body to that parameter.
+@ResponseBody: It binds the method return value to the response body. It tells the Spring Boot Framework to serialize a return an object into JSON and XML format.
+@PathVariable: It is used to extract the values from the URI. It is most suitable for the RESTful web service, where the URL contains a path variable. We can define multiple @PathVariable in a method.
+@RequestParam: It is used to extract the query parameters form the URL. It is also known as a query parameter. It is most suitable for web applications. It can specify default values if the query parameter is not present in the URL.
+@RequestHeader: It is used to get the details about the HTTP request headers. We use this annotation as a method parameter. The optional elements of the annotation are name, required, value, defaultValue. For each detail in the header, we should specify separate annotations. We can use it multiple time in a method
+@RestController: It can be considered as a combination of @Controller and @ResponseBody annotations. The @RestController annotation is itself annotated with the @ResponseBody annotation. It eliminates the need for annotating each method with @ResponseBody.
+@RequestAttribute: It binds a method parameter to request attribute. It provides convenient access to the request attributes from a controller method. With the help of @RequestAttribute annotation, we can access objects that are populated on the server-side.
+
+    
+
+
+
+
+
+
+package com.training.component;
+
+public class Employee {
+	private Integer empId;
+	private String firstName;
+	private String lastName;
+	private String mailId;
+
+	public Employee() {
+		System.out.println("Default ");
+	}
+	public Employee(Integer empId, String firstName, String lastName, String mailId) {
+		super();
+		this.empId = empId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.mailId = mailId;
+	}
+	public Integer getEmpId() {
+		return empId;
+	}
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getMailId() {
+		return mailId;
+	}
+	public void setMailId(String mailId) {
+		this.mailId = mailId;
+	}
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", firstName=" + firstName + ", lastName=" + lastName + ", mailId=" + mailId
+				+ "]";
+	}
+
+
+}
+
+
+
+
+
+
+
+package com.training.component;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+public class MyController {
+	@RequestMapping("/hello")
+	public String getMessage() {
+		return "Spring Boot Application another ";
+	}
+
+	@RequestMapping("/greeting")
+	public Greeting greeting(@RequestParam(value="name",defaultValue = "DBS") String name) {
+		return new Greeting(1,name);
+	}
+
+	@RequestMapping("/emp")
+	public List<Employee> getEmpList(){
+		List<Employee> eList=new ArrayList<Employee>();
+
+		eList.add(new Employee(101,"Eshan","Madake","EShan@gmail.com"));
+		eList.add(new Employee(102,"Tanish","Madake","Tanish@gmail.com"));
+		eList.add(new Employee(103,"Manish","Patil","Manish@gmail.com"));
+		eList.add(new Employee(104,"Kunal","Mishra","Kunal@gmail.com"));
+		eList.add(new Employee(105,"Anisha","reddy","anisha@gmail.com"));
+
+		return eList;
+
+
+	}
+
+}
+
+
+
+
+
+
+
+package com.training.component;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+public class MyController {
+	@RequestMapping("/hello")
+	public String getMessage() {
+		return "Spring Boot Application another ";
+	}
+	
+	@RequestMapping("/greeting")
+	public Greeting greeting(@RequestParam(value="name",defaultValue = "DBS") String name) {
+		return new Greeting(1,name);
+	}
+	
+}
+
+
+
+
+
+
+
+
+package com.training.component;
+
+public class Greeting {
+	private long id;
+	private String content;
+
+	public Greeting() {
+
+	}
+
+	public Greeting(long id, String content) {
+		super();
+		this.id = id;
+		this.content = content;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	@Override
+	public String toString() {
+		return "Greeting [id=" + id + ", content=" + content + "]";
+	}
+
+
+
+
+
+}
+
+
+
+
+
+
+
+package com.training.component;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+public class MyController {
+	@RequestMapping("/hello")
+	public String getMessage() {
+		return "Spring Boot Application another ";
+	}
+	
+}
+
+
+
+
+
+
+package com.training.org;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@SpringBootApplication(scanBasePackages="com.training.component")
+
+public class HelloWorld{
+	public static void main(String[] args) {
+		SpringApplication.run(HelloWorld.class, args);
+	}
+
+}
+
+
+
+
+
+
+
+
+The spring boot annotations are mostly placed in org.springframework.boot.autoconfigure and org.springframework.boot.autoconfigure.condition packages. Let’s learn about some frequently used spring boot annotations as well as which work behind the scene.
+
+@SpringBootApplication
+Spring boot is mostly about auto-configuration. This auto-configuration is done by component scanning i.e. finding all classes in classspath for @Component annotation. It also involve scanning of @Configuration annotation and initialize some extra beans.
+
+@SpringBootApplication annotation enable all able things in one step. It enables the three features:
+
+@EnableAutoConfiguration : enable auto-configuration mechanism
+@ComponentScan : enable @Component scan
+@SpringBootConfiguration : register extra beans in the context
+
+    
+    
+    
+    
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.training.org</groupId>
+	<artifactId>HelloWorld</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<java.version>1.14</java.version>
+	</properties>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.4.RELEASE</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+
+		</dependency>
+	</dependencies>
+
+</project>
+
+
+
+
+
+
+
+1] Create Maven Project
+2] check create a simple project (skip a..)
+3] group id :- com.training.app
+   Artifact id :- HelloWorldSpringBoot
+   finish
+4] create java package com.tarining.app
+   class :- HelloWorldSpringBootApp
+   @SpringBootApplication
+public class HelloWorldSpringBootApp {
+	public static void main(String[] args) {
+		SpringApplication.run(HelloWorldSpringBootApp.class, args);
+	}
+}
+
+
+5] update pom.xml
+  <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.trining.app</groupId>
+  <artifactId>HelloWorldSpringBoot</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+  	<java.version>1.14</java.version>
+  </properties>
+  
+  <parent>
+	  <groupId>org.springframework.boot</groupId>
+	  <artifactId>spring-boot-starter-parent</artifactId>
+	  <version>1.5.4.RELEASE</version>
+  </parent>
+  	
+  <dependencies>
+	  <dependency>
+	  	<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+		
+	  </dependency>
+  </dependencies>
+  
+</project>
+
+click update project 
+
+6] 
+
+create class 
+
+ com.training.app.controller
+  package com.trining.app.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloWorldController {
+	@RequestMapping(value="/")
+	public String hello() {
+		return "HelloWorld from controller";
+	}
+}
+
+
+
+   
+
+
+
+
+
+
+    
+    
+    
+    
+
+
+
+
+Spring Boot Framework has the following components:
+Spring Boot Starter
+Spring Boot AutoConfigurator
+Spring Boot Actuator
+Spring Boot CLI
+Spring Boot Initilizr
+
+
+
+
+
+
+
+
+package com.training.org;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainClass {
+	public static void main(String[] args) {
+		ApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+		Employee e1=(Employee)context.getBean("emp");
+
+		System.out.println(e1.getSalary());
+	}
+
+}
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<aop:aspectj-autoproxy />
+	<bean id="emp" class="com.training.org.Employee">
+		<property name="empId" value="101"></property>
+		<property name="name" value="Tanish"></property>
+		<property name="salary" value="100000"></property>
+	</bean>
+
+	<bean id="logging" class="com.training.org.Logging"></bean>
+
+</beans>
+
+
+
+
+
+package com.training.org;
+
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+
+@Aspect
+public class Logging {
+
+	@Pointcut("execution(* com.training.org.Employee.getSalary(...))")
+	private void selectedGetSalary() {
+		System.out.println("selectedGetSalary is called");
+	}
+	
+	@Before("selectedGetSalary()")
+	public void beforeAdvice() {
+		System.out.println("Before advice is called");
+	}
+	
+}
+
+
+
+
+
+
+package com.training.org;
+
+public class Employee {
+	private int empId;
+	private String name;
+	private double salary;
+	
+	
+	public Employee(int empId, String name, double salary) {
+		super();
+		this.empId = empId;
+		this.name = name;
+		this.salary = salary;
+	}
+
+
+	public int getEmpId() {
+		return empId;
+	}
+
+
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public double getSalary() {
+		return salary;
+	}
+
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", name=" + name + ", salary=" + salary + "]";
+	}
+	
+
+}
+
+
+
+
+
+
+https://www.javatpoint.com/spring-aop-aspectj-annotation-example
+    
+    
+    
+
+
+package com.training.org;
+
+import org.aopalliance.intercept.Joinpoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+
+@Aspect
+public class EmployeeCRUDAspect {
+	
+	@Before("execution(* EmployeeManager.getEmployeeDetails())")
+	public void logBeforeV1(Joinpoint jointPoint) {
+		System.out.println("Method before actual execution");
+	}
+
+}
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd ">
+
+   <!-- Initialization for data source -->
+   <bean id ="empMan" class="com.training.org.EmployeeManager">
+   
+   </bean>
+</beans>
+
+
+
+
+
+package com.training.org;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class EmployeeManager {
+	public String getEmployeeDetails() {
+		System.out.println("getEmployeeDetails is called");
+		return "EMP DETAILS";
+	}
+}
+
+
+
+package com.training.org;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MyMain {
+	public static void main(String[] args) {
+		ApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+		EmployeeManager eman=(EmployeeManager)context.getBean("empMan");
+		eman.getEmployeeDetails();
+	}
+
+}
+
+
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.training</groupId>
+	<artifactId>SpringAOP</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.2.7.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.2.7.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>5.2.7.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.9.5</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.5</version>
+		</dependency>
+		
+		
+		
+		
+
+
+	</dependencies>
+</project>
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="obj" class="com.training.org.A"></bean>
+	<!-- <bean id="ba" class="com.training.org.BeforeAdvice"></bean>
+	<bean id="aa" class="com.training.org.AfterAdvice"></bean> -->
+
+<bean id="ba" class="com.training.org.MethodInterceptor"></bean>
+
+	<bean id="proxy"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+
+		<property name="target" ref="obj"></property>
+		<property name="InterceptorNames">
+			<list>
+				<value>ba</value>
+				
+			</list>
+
+		</property>
+
+	</bean>
+</beans>
+
+
+
+
+
+package com.training.org.main;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.training.org.A;
+
+public class MyMain {
+	public static void main(String[] args) {
+		ApplicationContext context=new ClassPathXmlApplicationContext("applicationContext.xml");
+		
+		A a=(A)context.getBean("proxy");
+		a.showA();
+		
+	}
+}
+
+
+
+
+
+package com.training.org;
+
+import org.aopalliance.intercept.MethodInvocation;
+
+public class MethodInterceptor implements org.aopalliance.intercept.MethodInterceptor{
+
+	@Override
+	public Object invoke(MethodInvocation invocation) throws Throwable {
+		Object obj;
+		System.out.println("Additional Concern before actual logic");
+		obj=invocation.proceed();
+		System.out.println("Additional cocern after actual logic");
+		return null;
+	}
+
+}
+
+
+
+
+package com.training.org;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.AfterReturningAdvice;
+
+public class AfterAdvice implements AfterReturningAdvice{
+
+	@Override
+	public void afterReturning(Object returnValue, Method method, Object[] args, Object target) throws Throwable {
+		System.out.println("After returning additional concern");
+		
+		
+	}
+
+}
+
+
+
+
+
+
+package com.training.org;
+
+import java.lang.reflect.Method;
+
+import org.springframework.aop.MethodBeforeAdvice;
+
+public class BeforeAdvice implements MethodBeforeAdvice{
+
+	@Override
+	public void before(Method arg0, Object[] arg1, Object arg2) throws Throwable {
+		System.out.println("Additional concern before logic");
+		System.out.println("Method infor"+arg0.getName());
+		for(Object arg:arg1) {
+			System.out.println(arg);
+		}
+		System.out.println("Target "+arg2);
+		System.out.println("Target class"+arg2.getClass().getName());
+		
+	}
+}
+
+
+
+
+
+
+
+package com.training.org;
+
+public class A {
+	public void showA() {
+		System.out.println("Actual Business logic is called");
+	}
+}
+
+
+
+
+
+Spring AOP (Aspect-oriented programming) framework is used to modularize cross-cutting concerns in aspects. Put it simple, it’s just an interceptor to intercept some processes, for example, when a method is execute, Spring AOP can hijack the executing method, and add extra functionality before or after the method execution.
+In Spring AOP, 4 type of advices are supported :
+Before advice – Run before the method execution
+After returning advice – Run after the method returns a result
+After throwing advice – Run after the method throws an exception
+Around advice – Run around the method execution, combine all three advices above.
+
+
+
+
+
+
+
+Aspect Oriented Programming (AOP) compliments OOPs in the sense that it also provides modularity. But the key unit of modularity is aspect than class.
+AOP breaks the program logic into distinct parts (called concerns). It is used to increase modularity by cross-cutting concerns.
+A cross-cutting concern is a concern that can affect the whole application and should be centralized in one location in code as possible, such as transaction management, authentication, logging, security etc.
+
+
+    
+    

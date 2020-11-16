@@ -1,0 +1,49 @@
+1	What is React?
+
+React is an open-source, front end, JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.
+
+2	What are the major features of React?
+
+JSX,
+Components,
+One-way Data Binding,
+Virtual DOM,
+Simplicity,
+Performance
+
+3	What is JSX?
+
+JSX stands for JavaScript XML. JSX allows us to write HTML in React. JSX makes it easier to write and add HTML in React.
+
+4	What is the difference between Element and Component?
+
+component is a smaller, self-contained part of a larger entity often refers to a manufactured object that is part of a larger device while element is one of the simplest or essential parts or principles of which anything consists, or upon which the constitution or fundamental powers of anything are based.
+
+5	How to create components in React?
+
+npm i create-components-react
+ccr create [flags...] <ComponentName> [ComponentNames...]
+
+
+6	When to use a Class Component over a Function Component?
+
+If you are writing a presentational component which doesn't have its own state or needs to access a lifecycle hook,use functional component as much as possible. For state management you can use class component.
+
+
+7	What are Pure Components?
+
+Pure Components in React are the components which do not re-renders when the value of state and props has been updated with the same values. If the value of the previous state or props and the new state or props is the same, the component is not re-rendered
+
+
+8	What is state in React?
+
+React components has a built-in state object. The state object is where you store property values that belongs to the component. When the state object changes, the component re-renders.
+
+9	What are props in React?
+
+React allows us to pass information to a Component using something called props (stands for properties). Props are basically kind of global variable or object.  Passing and Accessing props. We can pass props to any component as we declare attributes for any HTML tag.
+
+
+10	What is the difference between state and props?
+
+In a React component, props are variables passed to it by its parent component. State on the other hand is still variables, but directly initialized and managed by the component. The state can be initialized by props.

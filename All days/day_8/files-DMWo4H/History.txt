@@ -1,0 +1,6 @@
+Each router creates a history object, which it uses to keep track of the current location[1] and re-render the website whenever that changes. The other components provided by React Router rely on having that history object available through React’s context, so they must be rendered as descendants of a router component. A React Router component that does not have a router as one of its ancestors will fail to work.
+
+
+One reason browserHistory is preferred over hashHistory is that it is better for deployment and production. hashHistory "works" by adding a unique key at the end of the url and creates a "history" for this by using these keys to keep track of your current session.
+
+browserHistory looks much cleaner without the #, but in order to get this set up, you need to configure your server such that it can handle the URLs you intend to provide it.

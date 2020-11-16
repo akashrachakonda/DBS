@@ -1,0 +1,7 @@
+  componentWillMount() {
+            console.log('I am about to say hello');
+        }
+
+        render() {
+            return <h1>Hello world</h1>;
+        }

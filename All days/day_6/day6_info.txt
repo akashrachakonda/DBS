@@ -1,0 +1,692 @@
+const mariadb = require('mariadb/callback');
+const conn = mariadb.createConnection({ host: 'mydb.com', user: 'root', password: 'shital@123', database: 'mariadb_test' });
+if (conn)
+    console.log("done")
+else
+    console.log("ERROR")
+
+    
+    // conn.query("SELECT 1 as val", (err, rows) => {
+    //     console.log(rows); //[ {val: 1}, meta: ... ]
+    //     conn.query("INSERT INTO myTable value (?, ?)", [1, "mariadb"], (err, res) => {
+    //         console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
+    //         conn.end();
+    //     });
+    //     console.log("ERO")
+    // });
+    
+    
+    
+    
+    
+
+
+const mariadb = require('mariadb');
+const pool = mariadb.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'shital@123',
+});
+pool.getConnection()
+    .then(conn => {
+        console.log("Connected")
+
+    }).catch(err => {
+        console.log("ERROR", err)
+    });
+    
+    
+    
+    
+    
+
+
+import React, { Component } from 'react'
+import { hashHistory,Router, Route, Link, IndexRoute} from 'react-router'
+
+class App12 extends Component {
+    render() {
+      return (
+        <Router history={hashHistory}>
+        <Route path='/' component={Container}>
+          <IndexRoute component={Home} />
+          <Route path='address' component={Address}>
+            <IndexRoute component={TwitterFeed} />
+            <Route path='instagram' component={Instagram} />
+          </Route>
+          <Route path='/about(/:name)' component={About} />
+          <Route path='*' component={NotFound} />
+        </Route>
+      </Router>
+      )
+    }
+  }
+
+  const About = (props) => (
+    <div>
+      <h3>Welcome to the About Page</h3>
+      <h2>{props.params.name}</h2>
+    </div>
+  )
+  
+  const Home = () => <h1>Hello from Home!</h1>
+ 
+  const NotFound = () => (<h1>404.. This page is not found!</h1>)
+
+  const Nav = () => (
+    <div><div>
+    <Link onlyActiveOnIndex  activeStyle={{color:'#53acff'}} to='/'>Home</Link>&nbsp;
+    <Link activeStyle={{color:'#53acff'}} to='/address'>Address</Link>&nbsp;
+    <Link activeStyle={{color:'#53acff'}} to='/about'>About</Link>&nbsp;
+  </div>
+
+    </div>
+  )
+
+  const Container = (props) => <div>
+  <Nav />
+  {props.children}
+</div>
+
+const Address = (props) => <div>
+  <br />
+  <Link onlyActiveOnIndex  activeStyle={{color:'#53acff'}} to='/address'>Twitter Feed</Link>&nbsp;
+  <Link activeStyle={{color:'#53acff'}} to='/address/instagram'>Instagram Feed</Link>
+  <h1>We are located at Hinjewadi.</h1>
+  {props.children}
+</div>
+
+
+const Instagram = () => <h3>Instagram Feed</h3>
+const TwitterFeed = () => <h3>Twitter Feed</h3>    
+
+export default App12
+
+
+
+
+
+
+
+
+
+
+
+import React, { Component } from 'react'
+import { hashHistory,Router, Route, Link, IndexRoute} from 'react-router'
+
+class App12 extends Component {
+    render() {
+      return (
+        <Router history={hashHistory}>
+        <Route path='/' component={Container}>
+          <IndexRoute component={Home} />
+          <Route path='address' component={Address}>
+            <IndexRoute component={TwitterFeed} />
+            <Route path='instagram' component={Instagram} />
+          </Route>
+          <Route path='*' component={NotFound} />
+        </Route>
+      </Router>
+      )
+    }
+  }
+  const Home = () => <h1>Hello from Home!</h1>
+ 
+  const NotFound = () => (<h1>404.. This page is not found!</h1>)
+
+  const Nav = () => (
+    <div>
+      <Link to='/'>Home</Link>&nbsp;
+      <Link to='/address'>Address</Link>
+    </div>
+  )
+
+  const Container = (props) => <div>
+  <Nav />
+  {props.children}
+</div>
+
+const Address = (props) => <div>
+  <br />
+  <Link to='/address'>Twitter Feed</Link>&nbsp;
+  <Link to='/address/instagram'>Instagram Feed</Link>
+  <h1>We are located at Hinjewadi.</h1>
+  {props.children}
+</div>
+
+
+const Instagram = () => <h3>Instagram Feed</h3>
+const TwitterFeed = () => <h3>Twitter Feed</h3>    
+
+export default App12
+
+
+
+
+
+
+
+
+
+import React, { Component } from 'react'
+import { hashHistory,Router, Route, Link, IndexRoute} from 'react-router'
+
+class App12 extends Component {
+    render() {
+      return (
+        <Router history={hashHistory}>
+        <Route path='/' component={Container}>
+          <IndexRoute component={Home} />
+          <Route path='/address' component={Address} />
+          <Route path='*' component={NotFound} />
+        </Route>
+      </Router>
+
+      )
+    }
+  }
+  const Home = () => <h1>Hello from Home!</h1>
+  const Address = () => <h1>We are located at 555 Jackson St.</h1>
+  const NotFound = () => (<h1>404.. This page is not found!</h1>)
+
+  const Nav = () => (
+    <div>
+      <Link to='/'>Home</Link>&nbsp;
+      <Link to='/address'>Address</Link>
+    </div>
+  )
+
+  const Container = (props) => <div>
+  <Nav />
+  {props.children}
+</div>
+
+    
+
+export default App12
+
+
+
+
+
+
+
+
+
+
+import React, { Component } from 'react'
+import { hashHistory,Router, Route, Link, IndexRoute} from 'react-router'
+
+class App12 extends Component {
+    render() {
+      return (
+        <Router history={hashHistory} >
+          <Route path='/' component={Home} />
+          <Route path='/address' component={Address} />
+        </Router>
+      )
+    }
+  }
+  const Home = () => <h1>Hello from Home!</h1>
+  const Address = () => <h1>We are located at 555 Jackson St.</h1>
+  
+
+export default App12
+
+
+
+
+
+
+
+
+import React,{Component} from "react";
+import { BrowserRouter as Router, Switch,Route, Link } from "react-router-dom";
+import './file.css'
+import htmlContent from './Contact.html';
+import './style.scss';
+const myconf = require('./myConfig.json5');
+import {stockData} from './data.js';
+class App11 extends Component {
+    constructor(props){
+        super(props)
+        console.log("myConfig",myconf.default.env)
+    }
+    render() {
+      return (
+      <Router>
+          <div>
+            <h2>Welcome to React Router Tutorial</h2>
+            <nav>
+            <ul >
+              <li><Link to={'/'} > Home </Link></li>
+              <li><Link to={'/about'} >About</Link></li>
+              <li><Link to={'/contact'} >Contact</Link></li>
+              <li><Link to={'/signin'} >Sign In</Link></li>
+              <li><Link to={'/signup'} >Sign Up</Link></li>
+            </ul>
+            </nav>
+            <hr />
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route path='/about' component={About} />
+                <Route path='/contact' component={Contact} />
+                <Route path='/signin' component={SignIn} />
+                <Route path='/signup' component={SignUp} />
+            </Switch>
+          </div>
+        </Router>
+      );
+    }
+  }
+  
+
+
+class Home extends Component {
+        render() {
+          return (
+              <div>
+                <h2>Home</h2>
+              </div>
+          );
+        }
+      }
+    
+
+    
+    class About extends Component {
+            render() {
+              return (
+                          <div>
+                               {stockData.map((data,key)=>{
+                                    return(<div key={key}>
+                                            {data.company} +" "+{data.stockPrice}+" "+{data.stockPrice}
+                                </div>)
+                                })}
+                            </div>
+                      );
+                      }
+          }
+        
+
+        class Contact extends Component {
+                render() {
+                  return (
+                      <div>
+                        <div dangerouslySetInnerHTML={{__html:htmlContent}}></div>
+                      </div>
+                  );
+                }
+              }
+            
+            
+
+
+            class SignIn extends Component {
+                    render() {
+                      return (
+                          <div>
+                            <table border='5px'>
+                            <tr>
+                                <td> Enter your id </td>
+                                <td> <input type="text"></input></td>
+                            </tr>
+                            <tr>
+                                <td> Enter your Password </td>
+                                <td> <input type="password"></input></td>
+                            </tr>   
+
+                            <tr>
+                                <td><input type="submit"></input></td>
+                            </tr>
+
+
+                            </table>    
+                          </div>
+                      );
+                    }
+                  }
+                
+                
+
+
+                class SignUp extends Component {
+                        render() {
+                          return (
+                              <div>
+                                <h2>SignUp</h2>
+                              </div>
+                          );
+                        }
+                      }
+                    
+                    
+
+
+export default App11;
+
+
+
+
+Command 
+
+npm install --save react-router@3.0.5
+
+
+
+
+
+The Router
+There are two types of router object.
+<BrowserRouter>
+<HashRouter>
+If we want to handle the dynamic request then use BrowserRouter and if we want to serve the static request then use HashRouter.
+History
+Every router creates history object to keep track of the current location of the page.
+
+
+
+
+
+
+
+import {stockData} from './data.js';
+
+
+
+ class About extends Component {
+            render() {
+              return (
+                  <div>
+                   {stockData.map((data,key)=>{
+            return(
+            <div key={key}>
+                {data.company} +" "+{data.stockPrice}+" "+{data.stockPrice}
+
+            </div>)
+        })}
+                  </div>
+              );
+            }
+          }
+
+
+
+
+
+export const stockData = [{
+        company: "TCS",
+        ticket: 'TCS',
+        stockPrice: '22USD',
+    },
+    {
+        company: "IBM",
+        ticket: 'IBM',
+        stockPrice: '123USD',
+
+    },
+    {
+        company: "Infosys",
+        ticket: 'Infi',
+        stockPrice: '23USD',
+    }
+];
+
+
+
+
+
+npm install sass-loader sass --save-dev
+
+
+ {
+                test: /\.json5$/i,
+                loader: 'json5-loader'
+            }
+
+
+
+
+{
+    env: 'windows',
+    ram: '16GB',
+}
+
+
+
+
+
+const myconf = require('./myConfig.json5');
+        console.log("myConfig",myconf.default.env)
+
+
+    
+    
+    
+    
+    
+    
+
+
+npm install --save-dev json5-loader
+
+
+
+
+
+const path = require('path');
+
+var config = {
+    entry: './main.js',
+
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index.js',
+    },
+    devServer: {
+        inline: true,
+        port: 3030
+    },
+
+    module: {
+        rules: [{
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+
+                query: {
+                    presets: ['es2015', 'react']
+                }
+            },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.html$/i,
+                use: ['html-loader']
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }
+
+
+        ],
+
+
+    }
+}
+module.exports = config;
+
+
+
+
+
+
+
+$body-color: red;
+body {
+    color: $body-color;
+}
+
+
+
+
+
+
+
+
+npm install sass-loader sass --save-dev
+
+
+
+
+
+
+
+
+
+"css-loader": "^5.0.0",
+
+        
+                "style-loader": "^2.0.0",
+
+                
+                
+                
+
+
+import React,{Component} from "react";
+import { BrowserRouter as Router, Switch,Route, Link } from "react-router-dom";
+
+class App11 extends Component {
+    render() {
+      return (
+      <Router>
+          <div>
+            <h2>Welcome to React Router Tutorial</h2>
+            <nav>
+            <ul >
+              <li><Link to={'/'} > Home </Link></li>
+              <li><Link to={'/contact'} >Contact</Link></li>
+              <li><Link to={'/about'} >About</Link></li>
+            </ul>
+            </nav>
+            <hr />
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route path='/contact' component={Contact} />
+                <Route path='/about' component={About} />
+            </Switch>
+          </div>
+        </Router>
+      );
+    }
+  }
+  
+
+
+class Home extends Component {
+        render() {
+          return (
+              <div>
+                <h2>Home</h2>
+              </div>
+          );
+        }
+      }
+    
+
+    
+    class About extends Component {
+            render() {
+              return (
+                  <div>
+                    <h2>About</h2>
+                  </div>
+              );
+            }
+          }
+        
+
+        class Contact extends Component {
+                render() {
+                  return (
+                      <div>
+                        <h2>Contact</h2>
+                      </div>
+                  );
+                }
+              }
+            
+            
+
+
+
+export default App11;
+
+
+
+
+
+
+
+
+
+import React from 'react'
+
+class App11 extends React.Component{
+    render(){
+        return(<div> Helllo </div>)
+    }
+}
+
+class Home extends Component {
+        render() {
+          return (
+              <div>
+                <h2>Home</h2>
+              </div>
+          );
+        }
+      }
+    
+
+    
+    class About extends Component {
+            render() {
+              return (
+                  <div>
+                    <h2>About</h2>
+                  </div>
+              );
+            }
+          }
+        
+
+        class Contact extends Component {
+                render() {
+                  return (
+                      <div>
+                        <h2>Contact</h2>
+                      </div>
+                  );
+                }
+              }
+            
+            
+
+
+
+export default App11;
+
+
+
+
+
+
+
+"react-router": "^3.0.5",
+        "react-router-dom": "^5.0.1",

@@ -1,0 +1,891 @@
+	Core React
+1	What is React?
+2	What are the major features of React?
+3	What is JSX?
+4	What is the difference between Element and Component?
+5	How to create components in React?
+6	When to use a Class Component over a Function Component?
+7	What are Pure Components?
+8	What is state in React?
+9	What are props in React?
+10	What is the difference between state and props?
+11	Why should we not update the state directly?
+12	What is the purpose of callback function as an argument of setState()?
+13	What is the difference between HTML and React event handling?
+14	How to bind methods or event handlers in JSX callbacks?
+15	How to pass a parameter to an event handler or callback?
+16	What are synthetic events in React?
+17	What are inline conditional expressions?
+18	What is "key" prop and what is the benefit of using it in arrays of elements?
+19	What is the use of refs?
+20	How to create refs?
+21	What are forward refs?
+22	Which is preferred option with in callback refs and findDOMNode()?
+23	Why are String Refs legacy?
+24	What is Virtual DOM?
+25	How Virtual DOM works?
+26	What is the difference between Shadow DOM and Virtual DOM?
+27	What is React Fiber?
+28	What is the main goal of React Fiber?
+29	What are controlled components?
+30	What are uncontrolled components?
+31	What is the difference between createElement and cloneElement?
+32	What is Lifting State Up in React?
+33	What are the different phases of component lifecycle?
+34	What are the lifecycle methods of React?
+35	What are Higher-Order components?
+36	How to create props proxy for HOC component?
+37	What is context?
+38	What is children prop?
+39	How to write comments in React?
+40	What is the purpose of using super constructor with props argument?
+41	What is reconciliation?
+42	How to set state with a dynamic key name?
+43	What would be the common mistake of function being called every time the component renders?
+44	Is lazy function supports named exports?
+45	Why React uses className over class attribute?
+46	What are fragments?
+47	Why fragments are better than container divs?
+48	What are portals in React?
+49	What are stateless components?
+50	What are stateful components?
+51	How to apply validation on props in React?
+52	What are the advantages of React?
+53	What are the limitations of React?
+54	What are error boundaries in React v16
+55	How error boundaries handled in React v15?
+56	What are the recommended ways for static type checking?
+57	What is the use of react-dom package?
+58	What is the purpose of render method of react-dom?
+59	What is ReactDOMServer?
+60	How to use InnerHtml in React?
+61	How to use styles in React?
+62	How events are different in React?
+63	What will happen if you use setState in constructor?
+64	What is the impact of indexes as keys?
+65	Is it good to use setState() in componentWillMount() method?
+66	What will happen if you use props in initial state?
+67	How do you conditionally render components?
+68	Why we need to be careful when spreading props on DOM elements??
+69	How you use decorators in React?
+70	How do you memoize a component?
+71	How you implement Server-Side Rendering or SSR?
+72	How to enable production mode in React?
+73	What is CRA and its benefits?
+74	What is the lifecycle methods order in mounting?
+75	What are the lifecycle methods going to be deprecated in React v16?
+76	What is the purpose of getDerivedStateFromProps() lifecycle method?
+77	What is the purpose of getSnapshotBeforeUpdate() lifecycle method?
+78	Do Hooks replace render props and higher order components?
+79	What is the recommended way for naming components?
+80	What is the recommended ordering of methods in component class?
+81	What is a switching component?
+82	Why we need to pass a function to setState()?
+83	What is strict mode in React?
+84	What are React Mixins?
+85	Why is isMounted() an anti-pattern and what is the proper solution?
+86	What are the Pointer Events supported in React?
+87	Why should component names start with capital letter?
+88	Are custom DOM attributes supported in React v16?
+89	What is the difference between constructor and getInitialState?
+90	Can you force a component to re-render without calling setState?
+91	What is the difference between super() and super(props) in React using ES6 classes?
+92	How to loop inside JSX?
+93	How do you access props in attribute quotes?
+94	What is React PropType array with shape?
+95	How to conditionally apply class attributes?
+96	What is the difference between React and ReactDOM?
+97	Why ReactDOM is separated from React?
+98	How to use React label element?
+99	How to combine multiple inline style objects?
+100	How to re-render the view when the browser is resized?
+101	What is the difference between setState and replaceState methods?
+102	How to listen to state changes?
+103	What is the recommended approach of removing an array element in react state?
+104	Is it possible to use React without rendering HTML?
+105	How to pretty print JSON with React?
+106	Why you can't update props in React?
+107	How to focus an input element on page load?
+108	What are the possible ways of updating objects in state?
+110	How can we find the version of React at runtime in the browser?
+111	What are the approaches to include polyfills in your create-react-app?
+112	How to use https instead of http in create-react-app?
+113	How to avoid using relative path imports in create-react-app?
+114	How to add Google Analytics for react-router?
+115	How to update a component every second?
+116	How do you apply vendor prefixes to inline styles in React?
+117	How to import and export components using react and ES6?
+118	What are the exceptions on React component naming?
+119	Why is a component constructor called only once?
+120	How to define constants in React?
+121	How to programmatically trigger click event in React?
+122	Is it possible to use async/await in plain React?
+123	What are the common folder structures for React?
+124	What are the popular packages for animation?
+125	What is the benefit of styles modules?
+126	What are the popular React-specific linters?
+127	How to make AJAX call and In which component lifecycle methods should I make an AJAX call?
+128	What are render props?
+React Router
+129	What is React Router?
+130	How React Router is different from history library?
+131	What are the <Router> components of React Router v4?
+132	What is the purpose of push and replace methods of history?
+133	How do you programmatically navigate using React router v4?
+134	How to get query parameters in React Router v4
+135	Why you get "Router may have only one child element" warning?
+136	How to pass params to history.push method in React Router v4?
+137	How to implement default or NotFound page?
+138	How to get history on React Router v4?
+139	How to perform automatic redirect after login?
+React Internationalization
+140	What is React-Intl?
+141	What are the main features of React Intl?
+142	What are the two ways of formatting in React Intl?
+143	How to use FormattedMessage as placeholder using React Intl?
+144	How to access current locale with React Intl
+145	How to format date using React Intl?
+React Testing
+146	What is Shallow Renderer in React testing?
+147	What is TestRenderer package in React?
+148	What is the purpose of ReactTestUtils package?
+149	What is Jest?
+150	What are the advantages of Jest over Jasmine?
+151	Give a simple example of Jest test case
+React Redux
+152	What is Flux?
+153	What is Redux?
+154	What are the core principles of Redux?
+155	What are the downsides of Redux compared to Flux?
+156	What is the difference between mapStateToProps() and mapDispatchToProps()?
+157	Can I dispatch an action in reducer?
+158	How to access Redux store outside a component?
+159	What are the drawbacks of MVW pattern
+160	Are there any similarities between Redux and RxJS?
+161	How to dispatch an action on load?
+162	How to use connect from React Redux?
+163	How to reset state in Redux?
+164	Whats the purpose of at symbol in the redux connect decorator?
+165	What is the difference between React context and React Redux?
+166	Why are Redux state functions called reducers?
+167	How to make AJAX request in Redux?
+168	Should I keep all component's state in Redux store?
+169	What is the proper way to access Redux store?
+170	What is the difference between component and container in React Redux?
+171	What is the purpose of the constants in Redux?
+172	What are the different ways to write mapDispatchToProps()?
+173	What is the use of the ownProps parameter in mapStateToProps() and mapDispatchToProps()?
+174	How to structure Redux top level directories?
+175	What is redux-saga?
+176	What is the mental model of redux-saga?
+177	What are the differences between call and put in redux-saga
+178	What is Redux Thunk?
+179	What are the differences between redux-saga and redux-thunk
+180	What is Redux DevTools?
+181	What are the features of Redux DevTools?
+182	What are Redux selectors and Why to use them?
+183	What is Redux Form?
+184	What are the main features of Redux Form?
+185	How to add multiple middlewares to Redux?
+186	How to set initial state in Redux?
+187	How Relay is different from Redux?
+188	What is an action in Redux?
+React Native
+188	What is the difference between React Native and React?
+189	How to test React Native apps?
+190	How to do logging in React Native?
+191	How to debug your React Native?
+React supported libraries and Integration
+192	What is reselect and how it works?
+193	What is Flow?
+194	What is the difference between Flow and PropTypes?
+195	How to use font-awesome icons in React?
+196	What is React Dev Tools?
+197	Why is DevTools not loading in Chrome for local files?
+198	How to use Polymer in React?
+199	What are the advantages of React over Vue.js?
+200	What is the difference between React and Angular?
+
+
+
+
+
+https://eslint.org/docs/rules/
+    
+    
+    
+
+
+
+
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import CompOne from './components/ComponentOne';
+import CompTwo from './components/ComponentTwo';
+
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      appState: 1
+    };
+    this.increaseNumber = this.increaseNumber.bind(this);
+    this.decreaseAppState = this.decreaseAppState.bind(this);
+  }
+
+  increaseNumber() {
+    const { appState } = this.state;
+
+    this.setState({
+      appState: appState + 1
+    });
+  }
+
+  decreaseAppState() {
+    const { appState } = this.state;
+
+    this.setState({
+      appState: appState - 1
+    });
+  }
+
+  render() {
+    const { appState } = this.state;
+
+    return (
+      <div className='app'>
+        <h1>React assignment #1</h1>
+        <p>Current number: {appState}</p>
+        <button onClick={this.increaseNumber}>Increase number</button>
+        <CompOne appState={appState} decreaseAppState={this.decreaseAppState} />
+        <CompTwo appState={appState} />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+
+
+
+
+
+.eslintrc
+
+
+
+
+{
+    "parser": "babel-eslint",
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+     
+    }
+  }
+  
+    
+    
+    
+    
+
+
+{
+    "name": "linter-demo",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "start": "webpack-dev-server --hot"
+    },
+    "dependencies": {
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "react-scripts": "3.4.3",
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.5",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-react": "^6.24.1",
+        "html-loader": "^0.5.5",
+        "react-router": "^3.0.5",
+        "react-router-dom": "^5.0.1",
+        "webpack": "^4.16.1",
+        "webpack-cli": "^3.1.0",
+        "webpack-dev-server": "^3.1.4"
+    },
+    "devDependencies": {
+        "babel-eslint": "^10.1.0",
+        "babel-loader": "^8.1.0",
+        "eslint": "^7.10.0",
+        "eslint-loader": "^4.0.2",
+        "eslint-plugin-react": "^7.21.3"
+    }
+}
+
+
+
+
+
+
+
+
+
+"babel-eslint": "^10.1.0",
+        "babel-loader": "^8.1.0",
+        "eslint": "^7.10.0",
+        "eslint-loader": "^4.0.2",
+        "eslint-plugin-react": "^7.21.3"
+            
+            
+            
+            
+            
+
+
+import React from 'react'
+import {shallow,mount,render} from 'enzyme'
+import OrderedList from '../components/OrderedList';
+
+describe('Out test suites', () => {
+    it('render all the mocked options', () => {
+        const names=['Eshan','Tanish','manish']
+        const wrapper=render(<OrderedList options={name}/>)
+        
+        expect(wrapper.find('options')).toBeDefined();
+        expect(wrapper.find('.value')).toHaveLength(names.length)
+        
+    });
+});
+
+
+
+
+
+
+
+
+
+import React from 'react'
+function OrderedOptionList(props){
+    const {value}=props
+    return (<li>
+        {value}
+    </li>)
+}
+
+export default OrderedOptionList;
+
+
+
+
+
+
+
+
+import React from 'react'
+function OrderedList(props){
+    const {options}=props
+    if(!options.length){
+        return <span className="empty">NO Option List </span>
+    }
+
+    return(
+        <ol>
+            {options.map(option=><OrderedOptionList key={option} value={option}></OrderedOptionList>)}
+
+        </ol>
+    )
+}
+
+OrderedList.defaultProps={
+    options:[]
+}
+
+export default OrderedList;
+
+
+
+
+
+
+https://gofile.io/d/fSdtY9
+    
+    
+    
+    
+
+
+import React,{Component} from 'react'
+class App extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            count:0
+        }
+        this.increment=this.increment.bind(this)
+    }
+
+    increment(){
+        this.setState({
+            count:count+=1
+        })
+    }
+
+    render(){
+        return(<div>
+            <p>Cound: {this.state.count}</p>
+            <button onClick={this.increment}>Increment</button>
+        </div>)
+    }
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React from 'react'
+import PropsTypes from 'props-types'
+
+function List(props) {
+    const { items } = props
+    if (!items.length) {
+        return <span className = "Empty-message" > NO Items in list </span>;
+    }
+
+    return(
+        <ul>
+            {items.map(item=><li key={item}>{item}</li>)}
+        </ul>
+    )
+}
+
+List.prototype={
+    items:PropsTypes.array,
+};
+
+
+List.defaultProps={
+    items:[]
+}
+
+
+export default List;
+
+
+
+
+
+
+importimportimportimport { configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() });
+
+
+
+
+
+
+enzyme react-test-renderer enzyme-adapter-react-16
+
+
+
+
+
+
+
+Enzyme is another library commonly used with either Jest or Mocha and Chai. With Enzyme we can create a mock DOM to test whether components are rendered correctly, and whether they behave correctly when acted upon. Enzyme’s mock rendering can either be done through shallow rendering or full DOM rendering.
+Shallow rendering is used when doing unit testing of a component. This allows for tests to focus only on that component and how it functions, without caring about other components it might interact with.
+Full DOM rendering involves rendering your component and all children components. The allows for more in-depth testing to see how your components on the DOM interact with each other.
+
+
+
+
+
+
+
+First of all what are Jest and Enzyme? Jest was created by Facebook and is a testing framework totest javascript and React code. Together with Airbnb'sEnzyme, which is a testing utility, makes it the perfect match to easily test your React application
+
+There’s one more dependency we’ll need for now - Enzyme. Enzyme is a suite of test utilities for testing React that makes it incredibly easy to render, search and make assertions on your components, and we’ll use it extensively today. Enzyme also needs react-test-renderer to be installed
+
+enzyme react-test-renderer enzyme-adapter-react-16
+
+
+
+
+
+
+{
+    "name": "myapplication",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "webpack-dev-server --hot",
+        "test": "jest __tests__  --coverage --reporters default jest-stare"
+
+    },
+    "jest": {
+        "collectCoverage": true
+    },
+    "jest-stare ": {
+        "reporters": [
+            "default",
+            "jest-stare"
+        ],
+        "testResultsProcessor": "./node_modules/jest-stare"
+    },
+    "author": "SBM",
+    "license": "ISC",
+    "dependencies": {
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.5",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-react": "^6.24.1",
+        "react": "^16.4.1",
+        "react-dom": "^16.4.1",
+        "webpack": "^4.16.1",
+        "webpack-cli": "^3.1.0",
+        "webpack-dev-server": "^3.1.4"
+    },
+    "devDependencies": {
+        "jest-cli": "^26.6.2",
+        "jest-stare": "^2.2.0"
+    }
+}
+
+
+npm install --save-dev jest-stare
+
+
+
+
+
+
+function filterByTerm(inputArr, searchTerm) {
+    if (!searchTerm) throw Error("searchTerm cannot be empty");
+    if (!inputArr.length) throw Error("inputArr cannot be empty"); // new line
+    const regex = new RegExp(searchTerm, "i");
+    return inputArr.filter(function(arrayElement) {
+        return arrayElement.url.match(regex);
+    });
+}
+
+describe("Filter function", () => {
+    it("it should filter by a search term (link)", () => {
+        const input = [
+            { id: 1, url: "https://www.url1.com" },
+            { id: 2, url: "https://www.url2.com" },
+            { id: 3, url: "https://www.link3.com" }
+        ];
+
+        const output = [{ id: 3, url: "https://www.link3.com" }];
+
+        expect(filterByTerm(input, "link")).toEqual(output);
+
+        expect(filterByTerm(input, "LINK")).toEqual(output);
+    });
+});
+
+
+
+
+
+
+
+const calc = require('../math1')
+describe('Math calculation check', () => {
+    test("Adding 1 + 1 equals 2", () => {
+        expect(calc.sum(1, 1)).toBe(2)
+    })
+    test("Multiplying 1 * 1 equals 1", () => {
+        expect(calc.mul(1, 1)).toBe(1)
+    })
+    test("Subtracting 1 - 1 equals 0", () => {
+        expect(calc.sub(1, 1)).toBe(0)
+    })
+    test("Dividing 1 / 1 equals 1", () => {
+        expect(calc.div(1, 1)).toBe(1)
+    })
+
+});
+
+
+
+
+
+
+const sum = (a, b) => a + b
+const mul = (a, b) => a * b
+const sub = (a, b) => a - b
+const div = (a, b) => a / b
+
+module.exports = { sum, mul, sub, div }
+
+
+
+
+
+
+
+toBe compares strict equality, using ===
+toEqual compares the values of two variables. If it’s an object or array, checks equality of all the properties or elements
+toBeNull is true when passing a null value
+toBeDefined is true when passing a defined value (opposite as above)
+toBeUndefined is true when passing an undefined value
+toBeCloseTo is used to compare floating values, avoid rounding errors
+toBeTruthy true if the value is considered true (like an if does)
+toBeFalsy true if the value is considered false (like an if does)
+toBeGreaterThan true if the result of expect() is higher than the argument
+toBeGreaterThanOrEqual true if the result of expect() is equal to the argument, or higher than the argument
+toBeLessThan true if the result of expect() is lower than the argument
+toBeLessThanOrEqual true if the result of expect() is equal to the argument, or lower than the argument
+toMatch is used to compare strings with regular expression pattern matching
+toContain is used in arrays, true if the expected array contains the argument in its elements set
+toHaveLength(number): checks the length of an array
+toHaveProperty(key, value): checks if an object has a property, and optionally checks its value
+toThrow checks if a function you pass throws an exception (in general) or a specific exception
+toBeInstanceOf(): checks if an object is an instance of a class
+
+    
+    
+    
+
+
+const sum = (a, b) => a + b
+const mul = (a, b) => a * b
+const sub = (a, b) => a - b
+const div = (a, b) => a / b
+
+export default { sum, mul, sub, div }
+
+TEST FILE
+const { sum, mul, sub, div } = require("./math")
+
+test("Adding 1 + 1 equals 2", () => {
+  expect(sum(1, 1)).toBe(2)
+})
+test("Multiplying 1 * 1 equals 1", () => {
+  expect(mul(1, 1)).toBe(1)
+})
+test("Subtracting 1 - 1 equals 0", () => {
+  expect(sub(1, 1)).toBe(0)
+})
+test("Dividing 1 / 1 equals 1", () => {
+  expect(div(1, 1)).toBe(1)
+})
+
+
+
+
+
+
+
+
+
+
+
+import React from "react"
+class App extends React.Component{
+    render(){
+        return(
+            <div>
+                <p>welcome This is simple statement from</p>
+                <p> New para</p>
+            </div>
+        );
+    }
+}
+
+export default App;
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>React Router Tutorial</title>
+</head>
+
+<body>
+    <h1> Heading 1</h1>
+
+    <div id="app"></div>
+    <script src="index.js"></script>
+</body>
+
+</html>
+
+
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App.jsx'
+ReactDOM.render( < App / > ,
+    document.getElementById("app")
+);
+
+
+
+
+
+
+{
+    "name": "myapplication",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "webpack-dev-server --hot",
+        "test": "jest"
+    },
+    "author": "SBM",
+    "license": "ISC",
+    "dependencies": {
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.5",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-react": "^6.24.1",
+        "react": "^16.4.1",
+        "react-dom": "^16.4.1",
+        "webpack": "^4.16.1",
+        "webpack-cli": "^3.1.0",
+        "webpack-dev-server": "^3.1.4"
+    },
+    "devDependencies": {
+        "jest-cli": "^26.6.2"
+    }
+}
+
+
+
+
+
+
+const path = require('path');
+
+var config = {
+    entry: './main.js',
+
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index.js',
+    },
+    devServer: {
+        inline: true,
+        port: 5000
+    },
+
+    module: {
+        rules: [{
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+
+                query: {
+                    presets: ['es2015', 'react']
+                }
+            }
+
+        ],
+
+
+    }
+}
+module.exports = config;
+
+
+
+
+
+
+import jest from 'jest-cli'
+
+
+jest.unmock('../sum.js')
+
+describe('Example of jest', () => {
+    it('Sum Equality', () => {
+        const sum = require('../sum');
+        expect(sum(1, 2)).toBe(3);
+        done()
+    });
+})
+
+
+
+
+
+
+
+function sum(a, b) {
+    return a + b;
+}
+module.exports = sum;
+
+
+
+
+
+npm install babel-preset-es2015 --save
+npm install babel-preset-react --save
+
+
+
+
+
+Performance - Jest run tests in parallel processes thus minimizing test runtime.
+Mocking - Jest allows you to mock objects in your test files. It supports function mocking, manual mocking and timer mocking. You can mock specific objects or turn on automatic mocking with automock which will mock every component/object that the component/object test depends on.
+Snapshot testing - When using Jest to test a React or React Native application, you can write a snapshot test that will save the output of a rendered component to file and compare the component's output to the snapshot on subsequent runs. This is useful in knowing when your component changes its behaviour.
+Code coverage support - This is provided with Jest with no additional packages or configuration.
+Test isolation and sandboxing - With Jest, no two tests will ever conflict with each other, nor will there ever be a global or module local state that is going to cause trouble. Sandboxed test files and automatic global state resets for every test.
+Integrates with other testing libraries - Jest works well with other testing libraries (e.g. Enzyme, Chai).
+
+
+
+
+
+
+
+chai
+This is an expectation / assertion library
+expect/should/assert are function given by chai
+Mocha / Jasmine
+This is a test runner, used to run your tests and log your test results
+describe/it/beforeEach
+Functions by mocha/jasmine and used to organized your test
+describe → Describe a function
+it → Specify what certain conditions are met. Lives inside the describe
+beforeEach → Setup tests before it starts
+Enzyme
+JavaScript Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components’ output.
+It simulates ReactDOM, and React Components like JQuery finding DOM.
+Can be used to shallow render React components, or check if components have certain children or if they have certain props.
+Jest
+A unit testing framework developed by Facebook for ReactJS project.
+Use Jest to capture snapshots of React components for certain time with props and states changes. Can be used together with Enzyme.
+
+
+
+
+
+
+Jest is a JavaScript test runner maintained by Facebook. A test runner is software that looks for tests in your codebase, runs them and displays the results (usually through a CLI interface).

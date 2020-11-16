@@ -1,0 +1,1076 @@
+yo react-webpack component:my/namespaced/component/testingcomp --stateless
+    
+
+npm install -g yo
+npm install -g generator-react-webpack
+
+yo react-webpack
+
+
+
+
+
+
+
+npm install -g create-react-app
+npx create-react-app my-app
+
+npm install -g reactjs-component-generator
+
+
+
+
+
+const faker=require('faker')
+const fs=require('fs')
+
+
+function generateUsers(){
+	let users=[];
+	for(let id=1;id<=100;id++){
+		let firstName=faker.name.firstName()
+		let lastName=faker.name.lastName()		
+		let email=faker.internet.email()
+
+		users.push({
+			"id":id,
+			"first_name":firstName
+			"last_name":lastName,
+			"email":email
+		})
+	}
+	return {"users":users}
+}
+
+let dataObj=generateUsers();
+fs.writeFileSync('data.json',JSON.stringify(dataObj,null,'\t'))
+
+
+
+
+
+npm install -g json-server
+
+npm install --save fs
+
+npm install --save faker
+
+
+
+
+
+
+
+import React from 'react'
+import axios from 'Axios'
+class App10 extends React.Component{
+
+    constructor(props){
+        super(props)
+        this.state={
+            records:[]
+        }
+    }
+    componentDidMount(){
+        const apiurl='http://jsonplaceholder.typicode.com/users/';
+        // fetch(apiurl)
+        // .then((response)=> response.json())
+        // .then((data)=>console.log("RECORDS are  ",data))
+
+        // axios.get(apiurl)
+        // .then((response)=>{
+        //     //console.log(response.data)
+        //     this.setState({
+        //         records:response.data
+        //     })
+        //     console.log(this.state.records)
+        // })
+        // .catch(error=>{
+        //     console.log("ERROR")
+        // })
+
+        const urlone=axios.get('http://jsonplaceholder.typicode.com/users/')
+        const urlsecond=axios.get('https://api.github.com/users/hacktivist123/repos')
+
+        axios.all([urlone,urlsecond]).then(axios.spread((...responses)=>{
+            console.log("First ",responses[0].data)
+            console.log("Second ",responses[1].data)
+
+        }))
+
+
+    }
+    render(){
+        return(
+            <ul>
+                {this.state.records.map(rec=><li>{rec.name}</li>)}
+            </ul>
+        )
+    }
+}
+
+export default App10;
+
+
+
+
+
+
+
+import React from 'react'
+import axios from 'Axios'
+class App10 extends React.Component{
+
+    constructor(props){
+        super(props)
+        this.state={
+            records:[]
+        }
+    }
+    componentDidMount(){
+        const apiurl='http://jsonplaceholder.typicode.com/users/';
+        // fetch(apiurl)
+        // .then((response)=> response.json())
+        // .then((data)=>console.log("RECORDS are  ",data))
+
+        axios.get(apiurl)
+        .then((response)=>{
+            //console.log(response.data)
+            this.setState({
+                records:response.data
+            })
+            console.log(this.state.records)
+        })
+        .catch(error=>{
+            console.log("ERROR")
+        })
+
+    }
+    render(){
+        return(
+            <ul>
+                {this.state.records.map(rec=><li>{rec.name}</li>)}
+            </ul>
+        )
+    }
+}
+
+export default App10;
+
+
+
+
+
+
+
+
+
+
+import React from 'react'
+import axios from 'Axios'
+class App10 extends React.Component{
+
+    constructor(props){
+        super(props)
+        this.state={
+            records:[]
+        }
+    }
+    componentDidMount(){
+        const apiurl='https://api.github.com/users/hacktivist123/repos';
+        // fetch(apiurl)
+        // .then((response)=> response.json())
+        // .then((data)=>console.log("RECORDS are  ",data))
+
+        axios.get(apiurl)
+        .then((response)=>{
+            //console.log(response.data)
+            this.setState({
+                records:response.data
+            })
+            console.log(this.state.records)
+        })
+        .catch(error=>{
+            console.log("ERROR")
+        })
+
+    }
+    render(){
+        return(<div>WAtch console to get all the details</div>)
+    }
+}
+
+export default App10;
+
+
+
+
+
+
+
+
+
+fetch('/',{
+.then()
+.then(response=>{}
+})
+
+
+Axios lib returns a data object that has already been parse to JSON
+
+
+axios({
+	url:/
+		//configuration...
+}).then(reponse=>{})
+        
+        
+        
+        
+        
+        
+
+
+import React from 'react';
+
+const options = [
+  {
+    label: "Apple",
+    value: "apple",
+  },
+  {
+    label: "Mango",
+    value: "mango",
+  },
+  {
+    label: "Banana",
+    value: "banana",
+  },
+  {
+    label: "Pineapple",
+    value: "pineapple",
+  },
+];
+class App9 extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        fruit: "banana",
+      };
+  
+      this.handleChange = this.handleChange.bind(this);
+    }
+  
+    handleChange(e) {
+      console.log("Fruit Selected!!");
+      this.setState({ fruit: e.target.value });
+    }
+  
+    render() {
+      return (
+        <div id="App">
+          <div className="select-container">
+            <select value={this.state.fruit} onChange={this.handleChange}>
+              {options.map((option) => (
+                <option value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      );
+    }
+  }
+  
+  export default App9;
+
+// const options = [
+//   {
+//     label: "Apple",
+//     value: "apple",
+//   },
+//   {
+//     label: "Mango",
+//     value: "mango",
+//   },
+//   {
+//     label: "Banana",
+//     value: "banana",
+//   },
+//   {
+//     label: "Pineapple",
+//     value: "pineapple",
+//   },
+// ];
+
+// class App9 extends React.Component {
+//   render() {
+//     return (
+//       <div id="App">
+//         <div className="select-container">
+//           <select>
+//             {options.map((option) => (
+//               <option value={option.value}>{option.label}</option>
+//             ))}
+//           </select>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
+
+//export default App9;
+
+
+
+// class App9 extends React.Component{
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//           inputValue: '',
+//           items: [],
+//         }
+//       }
+    
+//       onInputChange(e) {
+//         this.setState({
+//           inputValue: e.target.value,
+//         });
+//       }
+    
+//       addItem() {
+//         let items = this.state.items;
+//         items.push(this.state.inputValue);
+//         this.setState({
+//           items
+//         });
+//       }
+    
+//       listItems() {
+//         let items = this.state.items;
+//         return (
+//           <ul>
+//             {
+//               items.map((val, index) => {
+//                 return (
+//                   <li key={index}>
+//                     { val }
+//                   </li>
+//                 );
+//               })
+//             }
+//           </ul>
+//         );
+//       }
+    
+//       render() {
+//         return (
+//           <div>
+//             <input type="text" onChange={ (e) => this.onInputChange(e) } />
+//             <button onClick={ () => this.addItem() }>Add item</button>
+//             { this.listItems() }
+//           </div>
+//         );
+//       }
+// }
+
+//export default App9;
+
+
+
+
+
+
+
+import React from 'react';
+
+class App9 extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            count:0
+        }
+
+        this.timerTick=this.timerTick.bind(this)
+
+    }
+
+    timerTick(){
+      this.setState((prevState)=>{
+          return{
+              count:prevState.count+1
+            }
+         })
+    }
+
+    componentDidMount(){
+        this.timer=setInterval(this.timerTick,1000)
+        console.log("Component has mounted")
+    }
+
+    componentDidUpdate(prevProps,prevState){
+        console.log("Component updated from ",+prevState.count)
+    }
+
+    render(){
+        return(   
+           <h1>{this.state.count}</h1>
+
+        )
+    }
+
+}
+
+export default App9;
+
+
+
+
+
+
+1] Example
+
+import React, { Component } from 'react';
+
+class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      data: 'Jordan Belfort'
+    }
+  }
+  componentWillMount(){
+    console.log('First this called');
+  }
+
+  getData(){
+    setTimeout(() => {
+      console.log('Our data is fetched');
+      this.setState({
+        data: 'Hello WallStreet'
+      })
+    }, 1000)
+  }
+
+  componentDidMount(){
+    this.getData();
+  }
+
+  render() {
+    return(
+      <div>
+      {this.state.data}
+    </div>
+    )
+  }
+}
+
+export default App;
+
+
+
+2] Main.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app/app.jsx';
+
+ReactDOM.render(<App />, document.getElementById('App'));
+
+
+
+import React from 'react';
+
+class Person extends React.Component {
+   constructor(props) {
+     super(props);
+     this.state = { mode: undefined };
+   }
+  
+   componentWillMount() {
+     var modeValue;
+     if (this.props.age > 70) {
+       modeValue = "old";
+     } else if (this.props.age < 18) {
+       modeValue = "young";
+     } else {
+       modeValue = "middle";
+     }
+     console.log(modeValue)
+     this.setState({ mode: modeValue });
+
+     
+   }
+  
+   render() {
+     return (
+       <div className={"person person-" + this.state.mode}>
+         {this.props.name} (age: {this.props.age})
+       </div>
+     );
+   }
+ }
+  
+ Person.defaultProps = { age: "unknown" };
+
+ export default Person;
+
+
+
+2] Main.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Person from './App.jsx';
+
+// ReactDOM.render(<App/>, document.getElementById('app'))
+
+ReactDOM.render(
+    <Person name="Donald Trump" age="72" />,
+    document.getElementById("person1")
+  );
+  ReactDOM.render(
+    <Person name="Ivanka Trump" age="36" />,
+    document.getElementById("person2")
+  );
+
+
+
+
+3] index.html
+
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+      <meta charset = "UTF-8">
+      <title>React App</title>
+   </head>
+
+   <body>
+       welcome to react application
+       <div id="person1"></div>
+       <div id="person2"></div>
+      <script src = "index.js"></script>
+   </body>
+
+</html>
+
+
+
+
+
+
+
+Example 2
+
+
+class NumberView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentNumber: 1
+    };
+  }
+ 
+  nextValue() {
+    this.setState((prevState, props) => {
+      return {
+        currentNumber: prevState.currentNumber + 1
+      };
+    });
+  }
+ 
+  shouldComponentUpdate(props, nextState) {
+    // Odd Number
+    return nextState.currentNumber % 2 == 1;
+  }
+ 
+  render() {
+    return (
+      <div className="number-viewer">
+        <button onClick={() => this.nextValue()}>Next Value</button>
+        <p>Current Value: {this.state.currentNumber}</p>
+      </div>
+    );
+  }
+}
+ 
+// Render
+ReactDOM.render(<NumberView />, document.getElementById("numberview1"));
+
+
+
+
+
+2] HTML PAGE
+
+ <body>
+      <h1>shouldComponentUpdate():</h1>
+ 
+      <p>Show only odd numbers</p>
+      <div id="numberview1"></div>
+ 
+
+
+
+
+Example 3
+class RevenueView extends React.Component {
+  constructor(props) {
+    super(props);
+ 
+    this.state = {
+      year: 2018,
+      revenue: 1000,
+      growthRate: "Unknown"
+    };
+  }
+ 
+  nextYear() {
+    this.setState((prevState, props) => {
+      var randomRevenue = prevState.revenue * (1 + Math.random());
+      return {
+        year: prevState.year + 1,
+        revenue: randomRevenue
+      };
+    });
+  }
+ 
+  UNSAFE_componentWillUpdate(props, nextState) {
+    var rate = (nextState.revenue - this.state.revenue) / this.state.revenue;
+    nextState.growthRate = 100 * rate + " %";
+  }
+ 
+  render() {
+    return (
+      <div className="revenue-view">
+        <p>Year: {this.state.year}</p>
+        <p>Revenue: {this.state.revenue}</p>
+        <p>Growth Rate: {this.state.growthRate}</p>
+        <button onClick={() => this.nextYear()}>Next Year</button>
+      </div>
+    );
+  }
+}
+ 
+// Render
+ReactDOM.render(<RevenueView />, document.getElementById("revenueview1"));
+
+
+
+
+HTML PAGE
+
+style>
+         .revenue-view  {
+         border:1px solid #cbbfab;
+         padding: 5px;
+         margin: 5px;
+         }
+      </style>
+   </head>
+   <body>
+      <h3>UNSAFE_componentWillUpdate(props,nextState):</h3>
+ 
+      <div id="revenueview1"></div>
+ 
+
+
+
+
+
+
+
+
+
+import React from 'react';
+
+class App8 extends React.Component{
+    constructor(props){
+        super(props)
+        this.hdClk=this.handleClick.bind(this)
+    }
+
+    handleClick(){
+        console.log("Im executed")
+    }
+
+    render(){
+        return(<div>
+            
+            <button onClick={()=>this.handleClick()}>CLICK ME </button>
+            <button onClick={this.hdClk}>CLICK ME </button>
+            <button onClick={this.handleClick.bind(this)}>CLICK ME </button>
+
+        </div>)
+    }
+
+}
+
+export default App8;
+
+
+
+
+
+
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App8 from './App8.jsx'
+
+ReactDOM.render( < App8 / > , document.getElementById("app"));
+
+
+setTimeout(() => {
+    ReactDOM.unmountComponentAtNode(document.getElementById('app'));
+}, 10000);
+
+
+
+
+
+
+import React from 'react';
+class App8 extends React.Component {
+   constructor(props) {
+      super(props);
+	  this.state = {
+         data: 0
+      }
+      this.newNum = this.setNewNumber.bind(this)
+   };
+
+   setNewNumber() {
+      this.setState({data: this.state.data + 1})
+   }
+
+   render() {
+      return (
+         <div>
+            <button onClick = {this.newNum}>INCREMENT</button>
+            <Content myNumber = {this.state.data}></Content>
+         </div>
+      );
+   }
+}
+
+class Content extends React.Component {
+
+   componentWillMount() {
+      console.log('Component WILL MOUNT!')
+   }
+
+   componentDidMount() {
+      console.log('Component DID MOUNT!')
+   }
+
+   componentWillReceiveProps(newProps) {    
+      console.log('Component WILL RECIEVE PROPS!')
+   }
+
+   shouldComponentUpdate(newProps, newState) {
+      return true;
+   }
+
+   componentWillUpdate(nextProps, nextState) {
+      console.log('Component WILL UPDATE!');
+   }
+
+   componentDidUpdate(prevProps, prevState) {
+      console.log('Component DID UPDATE!')
+   }
+
+   componentWillUnmount() {
+      console.log('Component WILL UNMOUNT!')
+   }
+	
+   render() {
+      return (
+         <div>
+            <h3>{this.props.myNumber}</h3>
+         </div>
+      );
+   }
+}
+
+export default App8;
+
+
+
+
+There are just a few sce­nar­ios that require you to be aware of the life­cy­cle meth­ods
+1. Ini­tial Ren­der
+2. Props Change
+3. State Change
+4. Com­po­nent Unmount
+
+
+
+
+
+
+
+To get a clear idea of the lifecycle we will need to differentiate between the initial creation phase, where the component is created, and state and props changes triggered updates as well as the component unmoutings phase.
+
+
+
+
+
+
+import React from "react"
+class App7 extends React.Component{
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          title: 'React state example',
+        };
+      }
+    
+      tooggleTitle () {
+    
+        if (this.state.title === " ") {
+    
+          this.setState({ title: 'React state example' });
+        } else {
+    
+          this.setState({ title: '' });
+        }
+      }
+    
+      render() {
+        return (
+          <div>
+    
+            <div>
+              <input type="checkbox" id="showTitle" onClick={()=>this.tooggleTitle()} defaultChecked />
+              <label htmlFor="showTitle">Show title</label>
+            </div>
+    
+            <h2>{this.state.title}</h2>
+    
+          </div>
+        );
+      }
+}
+
+export default App7;
+
+
+
+
+
+
+
+import React from "react"
+class App6 extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+          count: 0
+        };
+      }
+    
+     increment() {
+        this.setState({
+          count: this.state.count + 1
+        });
+      };
+      
+      decrement() {
+        this.setState({
+          count: this.state.count - 1
+        });
+      };
+    
+      reset() {
+        this.setState({
+          count: 0
+        });
+      };
+    
+
+      render() {
+        return (
+    
+       <div>
+       <button className='inc' onClick={(e) => this.increment(e)}>Increment!</button>
+        <button className='dec' onClick={(e) => this.decrement(e)}>Decrement!</button>
+        <button className='reset' onClick={(e) => this.reset(e)}>Reset</button>
+        <h1>Current Count: {this.state.count}</h1>
+      </div>
+        );
+      }
+}
+
+export default App6;
+
+
+export default App6;
+
+
+
+
+
+
+
+
+import React from "react"
+class App4 extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            name:"Eshan",
+            id:"202",
+            salary:"10000"
+        }
+    }
+    render(){
+        return(
+            <div>
+                <h1> {this.state.id}{this.state.name} {this.state.salary}</h1>
+            </div>
+        );
+    }
+}
+
+export default App4;
+
+
+
+
+
+
+
+State is the place where the data comes from. You should always try to make your state as simple as possible and minimize number of stateful components. If you have, for example, ten components that need data from the state, you should create one container component that will keep the state for all of them.
+
+
+
+
+
+
+React relies on unidirectional data flow. This means that data flow occurs in only one direction i.e. from parent to child via properties. These properties are passed to child components via attributes in JSX. Inside the component you can access the passed properties via the props property of the component. When the properties change, React makes sure to re-render your component so that your UI is up-to-date with the data model. Let’s modify the previous snippet to show a random message every two seconds.
+
+
+
+
+
+
+
+import React from "react"
+import PropsTypes from 'prop-types'
+function App3(){
+    return <Greeting />
+}
+
+
+function Greeting(props){
+    return(
+        <p>
+            Hello I'm {props.name}, a{props.age} years old {props.occupation}
+        </p>
+    )
+}
+
+Greeting.defaultProps={
+    name:"Tanish",
+    age:"20",
+    occupation:"Student"
+}
+
+Greeting.prototype={
+    name: PropsTypes.string.isRequired,
+    age:PropsTypes.number.isRequired,
+    occupation:PropsTypes.string.isRequired
+}
+
+
+export default App3;
+
+
+    
+    
+    
+    
+    
+
+
+import React from "react"
+import PropsTypes from 'prop-types'
+function App3(){
+    return <Greeting name="Eshan" age={20} occupation="STudent"/>
+}
+
+
+function Greeting(props){
+    return(
+        <p>
+            Hello I'm {props.name}, a{props.age} years old {props.occupation}
+        </p>
+    )
+}
+
+Greeting.prototype={
+    name: PropsTypes.string.isRequired,
+    age:PropsTypes.number.isRequired,
+    occupation:PropsTypes.string.isRequired
+}
+
+
+
+ export default App3;
+
+
+    
+    
+    
+    
+    
+    
+
+
+React.Component
+Let’s take the above React.createClass definition and convert it to use an ES6 class.
+import React from 'react';
+ 
+class Contacts extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div></div>
+    );
+  }
+}
+ 
+export default Contacts;
+
+
+
+
+
+
+
+React.createClass
+Here we have a const with a React class assigned, with the important render function following on to complete a typical base component definition.
+import React from 'react';
+ 
+const Contacts = React.createClass({
+  render() {
+    return (
+      <div></div>
+    );
+  }
+});
+ 
+export default Contacts;
+
+
+
+
+
+
+
+Two ways to do the same thing. Almost. React traditionally provided the React.createClass method to create component classes, and released a small syntax sugar update to allow for better use with ES6 modules by extends React.Component, which extends the Component class instead of calling createClass.
+

@@ -1,0 +1,544 @@
+"test": "mocha  --reporter mochawesome"
+            
+            
+            
+
+
+npm install --save-dev mochawesome
+
+
+
+
+
+
+
+npm install --save-dev mocha-simple-html-reporter
+
+
+
+
+
+
+
+
+1	What is React?
+2	What are the major features of React?
+3	What is JSX?
+4	What is the difference between Element and Component?
+5	How to create components in React?
+6	When to use a Class Component over a Function Component?
+7	What are Pure Components?
+8	What is state in React?
+9	What are props in React?
+10	What is the difference between state and props?
+11	Why should we not update the state directly?
+12	What is the purpose of callback function as an argument of setState()?
+13	What is the difference between HTML and React event handling?
+14	How to bind methods or event handlers in JSX callbacks?
+15	How to pass a parameter to an event handler or callback?
+16	What are synthetic events in React?
+17	What are inline conditional expressions?
+18	What is "key" prop and what is the benefit of using it in arrays of elements?
+19	What is the use of refs?
+20	How to create refs?
+21	What are forward refs?
+22	Which is preferred option with in callback refs and findDOMNode()?
+23	Why are String Refs legacy?
+24	What is Virtual DOM?
+25	How Virtual DOM works?
+26	What is the difference between Shadow DOM and Virtual DOM?
+27	What is React Fiber?
+28	What is the main goal of React Fiber?
+29	What are controlled components?
+30	What are uncontrolled components?
+
+
+
+
+
+
+
+var http = require('http')
+var assert = require('assert')
+var calc = require('../JS/calc.js')
+var server = require('../server.js')
+describe('HTTP server test', () => {
+    before(function() {
+        server.listen(5555)
+    });
+
+    describe('/', () => {
+        it('should return Hello React Message', () => {
+            http.get('http://localhost:5555', function(response) {
+                assert.equal(response.statusCode, 200)
+            })
+        });
+
+        it('should return body message', () => {
+            http.get('http://localhost:5555', function(response) {
+                var body = '';
+                response.on('data', function(d) {
+                    body += d
+                    console.log(body)
+                })
+
+                response.on('end', function() {
+                    assert.equal(body, 'Hello React')
+                })
+            })
+
+        });
+
+    });
+
+    after(function() {
+        server.close();
+    })
+});
+
+
+// describe.only('Array Execution', () => {
+//     before(function() {
+//         console.log('runs before all tests in this block')
+//     });
+
+//     after(function() {
+//         console.log('runs after all tests in this block');
+//     });
+
+//     beforeEach(function() {
+//         console.log('runs before each test in this block');
+//     });
+
+//     afterEach(function() {
+//         console.log('runs after each test in this block');
+//     });
+
+//     it('#indexOf()', () => {
+//         assert.equal([1, 2, 3].indexOf(4), -1);
+//     });
+
+//     it('#returns 10+20', () => {
+//         assert.equal(calc.add(10, 20), 30)
+//     });
+
+
+//     it('#returns 10*2', () => {
+//         assert.equal(calc.mul(10, 2), 20)
+//     });
+
+// });
+
+
+
+
+var assert = require('assert')
+var calc = require('../JS/calc.js')
+
+describe.only('Array Execution', () => {
+    before(function() {
+        console.log('runs before all tests in this block')
+    });
+
+    after(function() {
+        console.log('runs after all tests in this block');
+    });
+
+    beforeEach(function() {
+        console.log('runs before each test in this block');
+    });
+
+    afterEach(function() {
+        console.log('runs after each test in this block');
+    });
+
+    it('#indexOf()', () => {
+        assert.equal([1, 2, 3].indexOf(4), -1);
+    });
+
+    it('#returns 10+20', () => {
+        assert.equal(calc.add(10, 20), 30)
+    });
+
+
+    it('#returns 10*2', () => {
+        assert.equal(calc.mul(10, 2), 20)
+    });
+
+});
+
+
+
+
+
+
+
+
+var assert = require('assert')
+var calc = require('../JS/calc.js')
+
+describe('Array Execution', () => {
+    it('#indexOf()', () => {
+        assert.equal([1, 2, 3].indexOf(4), -1);
+    });
+
+    it('#returns 10+20', () => {
+        assert.equal(calc.add(10, 20), 30)
+    });
+
+
+    it('#returns 10*2', () => {
+        assert.equal(calc.mul(10, 2), 20)
+    });
+});
+
+
+
+exports.add = function(a, b) {
+    return a + b;
+}
+
+exports.mul = function(a, b) {
+    return a * b;
+}
+
+
+
+
+
+
+
+
+
+
+
+var assert = require('assert')
+
+describe('Array Execution', () => {
+    it('#indexOf()', () => {
+        assert.equal([1, 2, 3].indexOf(4), -1);
+    });
+});
+
+
+
+
+
+
+
+
+Mocha and Jasmine are testing frameworks to test your code: they can use different assertion libraries, reporters, etc...
+
+should.js is an assertion library - It works from IE9 onward and any other browser - so you need a testing framework to use it
+chai is an assertion library "ecosystem": you can add plugins (I'm looking at you sinonJS) or just use it plain with its own version of should.js or expect.js - also here you need a testing framework in order to use it
+karma is a testing environment that leverages the power of Mocha and Jasmine to test cross-browser, do E2E testing, and more
+
+
+                                                               
+                                                               
+
+
+
+
+When you test your codebase, you take a piece of code — typically a function — and verify it behaves correctly in a specific situation. Unit testing is a structured and automated way of doing this. As a result, the more tests you write, the bigger the benefit you receive. You will also have a greater level of confidence in your codebase as you continue to develop it.
+
+With Node installed, open up a terminal or command line in your project’s directory.
+
+If you want to test Node.js code, in addition to the above, run 
+npm install -g mocha
+
+
+
+https://gofile.io/d/UK5WOP
+    
+    
+    
+    
+
+
+In order to run our Saga, we need to:
+
+create a Saga middleware with a list of Sagas to run (so far we have only one helloSaga)
+connect the Saga middleware to the Redux store
+We will make the changes to main.js:
+
+// ...
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+
+// ...
+import { helloSaga } from './sagas'
+
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(
+  reducer,
+  applyMiddleware(sagaMiddleware)
+)
+    sagaMiddleware.run(helloSaga)
+
+const action = type => store.dispatch({type})
+
+// rest unchanged
+
+
+
+
+
+
+Hello Sagas!
+We are going to create our first Saga. Following the tradition, we will write our 'Hello, world' version for Sagas.
+
+Create a file sagas.js then add the following snippet:
+
+export function* helloSaga() {
+  console.log('Hello Sagas!’)
+}	
+
+              
+              
+              
+              
+
+
+Redux-saga is a redux middleware library, that is designed to make handling side effects in your redux app nice and simple. It achieves this by leveraging an ES6 feature called Generators, allowing us to write asynchronous code that looks synchronous, and is very easy to test.
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redux basic example</title>
+    <script src="https://npmcdn.com/redux@latest/dist/redux.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <p>
+        Clicked: <span id="value">0</span> times
+        <button id="increment">+</button>
+        <button id="decrement">-</button>
+        <button id="incrementIfOdd">Increment if odd</button>
+        <button id="incrementAsync">Increment async</button>
+      </p>
+    </div>
+    <script>
+      function counter(state, action) {
+        if (typeof state === 'undefined') {
+          return 0
+        }
+        switch (action.type) {
+          case 'INCREMENT':
+            return state + 1
+          case 'DECREMENT':
+            return state - 1
+          default:
+            return state
+        }
+      }
+      var store = Redux.createStore(counter)
+      var valueEl = document.getElementById('value')
+      function render() {
+        valueEl.innerHTML = store.getState().toString()
+      }
+      render()
+      store.subscribe(render)
+      document.getElementById('increment')
+        .addEventListener('click', function () {
+          store.dispatch({ type: 'INCREMENT' })
+        })
+      document.getElementById('decrement')
+        .addEventListener('click', function () {
+          store.dispatch({ type: 'DECREMENT' })
+        })
+      document.getElementById('incrementIfOdd')
+        .addEventListener('click', function () {
+          if (store.getState() % 2 !== 0) {
+            store.dispatch({ type: 'INCREMENT' })
+          }
+        })
+      document.getElementById('incrementAsync')
+        .addEventListener('click', function () {
+          setTimeout(function () {
+            store.dispatch({ type: 'INCREMENT' })
+          }, 1000)
+        })
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+https://gofile.io/d/DMWo4H
+    
+    
+    
+    
+
+
+Finally, to apply this middleware to the Redux store, you need to call applyMiddleware when creating the store through createStore(). Here’s a nice example from the official Redux documentation:
+
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+
+let todoApp = combineReducers(reducers)  
+let store = createStore(  
+  todoApp,
+  // applyMiddleware() tells createStore() how to handle middleware
+  applyMiddleware(logger, crashReporter)
+)
+In the example above, the middleware logger will be called first, followed by the crashReporter middleware since this is the order in which they were passed to applyMiddleware.
+
+
+
+
+
+
+To define your own middleware, you need to write a function with the following signature: 
+store => next => action => result
+
+This looks very confusing at first glance - I hear you - so let’s break it down a little bit:
+
+store is the Redux store instance that will be passed to your middleware.
+next is a function that you need to call with an action when you want to continue the flow execution, which means passing the action to the next in line: either the following middleware or a reducer.
+action is the action that was originally dispatched so that you can access it, apply logic based on the action, and eventually pass it on using next.
+result is the value used as the result of the dispatch call.
+
+
+
+
+
+
+As expressed above, actions go through middleware before getting to the reducers, which gives us a great way of applying logic or filters to all actions. This means that the logic is grouped in one place instead of being spread across reducers, that we can easily identify where to investigate if a bug occurs, and we can swap that code out if we ever need to.
+
+Some use-cases that benefit from using middleware:
+
+Logging: every action goes through this middleware, so we can log its type and payload for debugging or tracking purposes.
+Error tracking: if any asynchronous action returned an error, this middleware can display a notification.
+Caching: Only call your API for the same action once, and cache the result for future calls.
+Auth requests: For API calls, apply an authentication token before sending out the request.
+So much more :)
+
+    
+    
+    
+    
+    
+
+
+The middleware sits in between the dispatch and reducers, which means we can alter our dispatched actions before they get to the reducers or execute some code during the dispatch. An example of a redux middleware is redux-thunk which allows you to write action creators that return a function instead of an action
+
+Redux Middleware. Middleware provides a way to interact with actions that have been dispatched to the store before they reach the store's reducer. Examples of different uses for middleware include logging actions, reporting errors, making asynchronous requests, and dispatching new actions.
+
+
+
+
+
+
+
+
+
+
+
+class Foo{
+	*[Symbol.iterator](){
+		yield 1;
+		yield 2;
+	}
+}
+
+class Another{
+	*[Symbol.iterator](){
+		yield 'a';
+		yield 'b';
+	}
+}
+console.log(Array.from(new Foo))
+console.log(Array.from(new Another))
+
+
+            
+            
+            
+            
+            
+
+
+function *anotherGenerator(i){
+	yield i+1;
+	yield i+2
+	yield i+3
+
+}
+
+
+function *myGen(i){
+	yield i
+	yield *anotherGenerator(i)
+	yield i+10
+}
+
+var gen=myGen(10)
+console.log(gen.next().value)
+console.log(gen.next().value)
+console.log(gen.next().value)
+console.log(gen.next().value)
+console.log(gen.next().value)
+console.log(gen.next().value)
+
+
+
+// function *idMaker(){
+// 	var index=1011;
+// 	while(true)
+// 		yield index++;
+// }
+
+// var gen=idMaker()
+// console.log(gen.next().value)
+// console.log(gen.next().value)
+// console.log(gen.next().value)
+// console.log(gen.next().value)
+// console.log(gen.next().value)
+
+
+
+// function *generatorMessage(){
+// 	yield 1;
+// 	yield 2;
+// 	yield 3+10
+// 	console.log("END")
+
+// }
+
+// const gen=generatorMessage()
+// console.log(gen.next().value)
+// console.log(gen.next())
+// console.log(gen.next())
+// console.log(gen.next())
+
+
+// function *generateForLoop(num){
+// 	for(let i=0;i<num;i++){
+// 		yield console.log(i)
+// 	}
+// }
+
+
+// const genLoop=generateForLoop(10)
+// genLoop.next()
+// genLoop.next()
+// genLoop.next()
+
+
+// function generateForLoop(num){
+// 	for(let i=0;i<num;i++){
+// 		console.log(i)
+// 	}
+// }
+
+// generateForLoop(10)
